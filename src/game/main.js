@@ -84,7 +84,6 @@ var playState = {
   },
   update: function() {
     // State Update Logic goes here.
-    player.update();
     //Checks for if the player overlaps a taco delivery point
     //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
     game.physics.arcade.overlap(player.player, 
@@ -93,6 +92,7 @@ var playState = {
                                 delivery_points.shouldDeliver, 
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    player.update();
     score.update();
     timer.update();
   },
