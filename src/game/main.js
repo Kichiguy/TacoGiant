@@ -19,8 +19,8 @@ var menuState = {
   },
 
   create: function() {
-    var logo = game.add.image(200,100, 'logo');
-    logo.anchor.setTo(0.5, 0.3);
+    var logo = game.add.image(150,50, 'logo');
+    logo.scale.setTo(3.5,3.5);
     button = game.add.button(game.world.centerX - 95, 400, 'button', this.start, this, 2, 1, 0);
   },
 
