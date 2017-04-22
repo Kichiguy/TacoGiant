@@ -11,6 +11,14 @@ Score.prototype.update = function(){
 
 }
 
+Score.prototype.deliverTaco(points) {
+
+}
+
+Score.prototype.propertyDamage(points) {
+
+}
+
 function Timer(x, y){
   var timerLabelText = "Time Remaining: ";
   var timerUpdateText;
@@ -21,4 +29,8 @@ function Timer(x, y){
 
 Timer.prototype.update = function() {
 
+}
+
+Timer.prototype.addTime() {
+  
 }
