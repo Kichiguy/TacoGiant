@@ -109,8 +109,7 @@ var gameOver = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/standardButton.png')
-
-  }
+  },
 
   create: function() {
 
