@@ -14,10 +14,13 @@ var menuState = {
 
   //create is a default phaser state function and is automatically called
   preload: function() {
+    game.load.image('logo', 'assets/Tacologo.svg');
     game.load.image('button', 'assets/sprites/PlaceholderArrow.png');
   },
 
   create: function() {
+    var logo = game.add.image(200,100, 'logo');
+    logo.anchor.setTo(0.5, 0.3);
     button = game.add.button(game.world.centerX - 95, 400, 'button', this.start, this, 2, 1, 0);
   },
 
