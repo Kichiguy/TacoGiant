@@ -23,7 +23,6 @@ var menuState = {
     var logo = game.add.image(150,50, 'logo');
     var arrow = game.add.image(200,450,'arrow')
     arrow.angle = -90
-    logo.scale.setTo(3.5,3.5);
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX - 100, 400, start_text, this.startGame, this, 0, 0, 0 ,0);
     // game.add.text(this.world.centerX - 100, 400, start_text, style);
