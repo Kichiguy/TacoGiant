@@ -31,7 +31,7 @@ var menuState = {
   },
 
   update: function() {
-    
+
   },
 
   startGame: function() {
@@ -69,13 +69,11 @@ var playState = {
     this._loadLevel(game.cache.getJSON('level:1'));
     player = new Player();
     score = new Score(0,0);
-    timer = new Timer(615,0, game);
+    timer = new Timer(615,0, 120);
   },
   update: function() {
     // State Update Logic goes here.
     player.update();
-    score.update();
-    timer.update();
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
