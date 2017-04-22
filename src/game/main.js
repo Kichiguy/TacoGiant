@@ -54,7 +54,7 @@ var playState = {
     this._loadLevel(game.cache.getJSON('level:1'));
     player = new Player();
     score = new Score(0,0);
-    timer = new Timer(615,0);
+    timer = new Timer(615,0, game);
   },
   update: function() {
     // State Update Logic goes here.
