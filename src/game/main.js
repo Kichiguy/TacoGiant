@@ -11,7 +11,7 @@
 var menuState = {
 
     //create is a default phaser state function as is automatically called
-    prelaod: function() {
+    preload: function() {
 
     },
 
