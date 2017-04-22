@@ -22,6 +22,14 @@ var bootState = {
 
 /////// LOAD ///////
 
+//the load state will load our assets
+var loadState = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
 
 /////// MENU ///////
 
