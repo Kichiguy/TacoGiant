@@ -8,21 +8,27 @@
 
 /////// MENU ///////
 
+var button;
+
 var menuState = {
 
-  //create is a default phaser state function as is automatically called
+  //create is a default phaser state function and is automatically called
   preload: function() {
-
+    game.load.image('button', 'assets/sprites/PlaceholderArrow.png');
   },
 
   create: function() {
-
+    button = game.add.button(game.world.centerX - 95, 400, 'button', this.start, this, 2, 1, 0);
   },
 
   update: function() {
-      
+    
+  },
+
+  start: function() {
+    game.state.start('play');
   }
-}
+};
 
 /////// PLAY ///////
 
@@ -67,5 +73,6 @@ var game = new Phaser.Game(
   600,
   Phaser.AUTO,
   'game',
-  playState
+  menuState
 );
+game.state.add('play', playState)
