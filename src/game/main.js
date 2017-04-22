@@ -33,6 +33,7 @@ var menuState = {
 /////// PLAY ///////
 
 var player;
+var game;
 
 var playState = {
   init: function() {
@@ -41,6 +42,9 @@ var playState = {
     // State preload logic goes here
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
+    game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
+    game.load.image('platform1', 'assets/sprites/PlaceholderPlatform.png');
+    game.load.json('level:1', 'data/level01.json');
   },
   create: function(){
     // State create logic goes here
@@ -51,12 +55,20 @@ var playState = {
     var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
     t.anchor.setTo(0.5, 0.3);
     player = new Player();
+
+    this._loadLevel(game.cache.getJSON('level:1'));
   },
   update: function() {
     // State Update Logic goes here.
     player.update();
+  },
+  _loadLevel: function(data){
+    data.platforms.forEach(this._spawnPlatform, this);
+  },
+  _spawnPlatform: function(platform){
+    game.add.sprite(platform.x, platform.y, platform.image);
   }
-}
+};
 
 /////// OVER ///////
 
@@ -66,13 +78,14 @@ var gameOver = {
   create: function() {
 
   }
-}
+};
 
-var game = new Phaser.Game(
+window.onload = function () {
+  game = new Phaser.Game(
   800,
   600,
   Phaser.AUTO,
   'game',
   menuState
 );
-game.state.add('play', playState)
+game.state.add('play', playState);
