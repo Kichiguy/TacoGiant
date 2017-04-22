@@ -1,22 +1,22 @@
 function Score(x, y){
-  var scoreLabelText = "Score: ";
-  var scoreUpdateText = 0;
-  var scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
+  this.scoreLabelText = "Score: ";
+  this.scoreUpdateText = 0;
+  this.scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
 
-  var scoreLabel = game.add.text(x, y, scoreLabelText, scoreStyle);
-  var score = game.add.text(x, y + 25, scoreUpdateText, scoreStyle);
+  this.scoreLabel = game.add.text(x, y, this.scoreLabelText, this.scoreStyle);
+  this.score = game.add.text(x, y + 25, this.scoreUpdateText, this.scoreStyle);
 }
 
 Score.prototype.deliverTaco = function(points){
-  scoreUpdateText = scoreUpdateText + points;
+  this.scoreUpdateText = parseInt(this.scoreUpdateText) + parseInt(points);
 }
 
 Score.prototype.propertyDamage = function(points) {
-  scoreUpdateText = scoreUpdateText - points;
+  this.scoreUpdateText = parseInt(this.scoreUpdateText) - parseInt(points);
 }
 
 Score.prototype.update = function() {
-  score.text = scoreUpdateText;
+  this.score.setText(this.scoreUpdateText);
 }
 
 function Timer(x, y){
