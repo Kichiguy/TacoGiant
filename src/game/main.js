@@ -121,6 +121,7 @@ var gameOver = {
   },
 
   create: function() {
+    game.add.image(150,50, 'logo');
     new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
