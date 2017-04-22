@@ -8,13 +8,13 @@ var StandardLabelButton = function(x, y, label, callback, callbackContext, overF
   //puts the label in the center of the button
   this.label.anchor.setTo( 0.5, 0.5 );
   this.addChild(this.label);
-  this.setLabel( label );
+  this.setLabel(label);
   //adds button to game    
   game.add.existing( this );
 };
 
 StandardLabelButton.prototype = Object.create(Phaser.Button.prototype);
-StandardLabelButton.prototype.constructor = LabelButton;
+StandardLabelButton.prototype.constructor = StandardLabelButton;
 StandardLabelButton.prototype.setLabel = function(label) {
   this.label.setText(label);
 };
