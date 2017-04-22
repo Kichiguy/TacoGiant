@@ -25,10 +25,10 @@ var menuState = {
     arrow.angle = -90
     logo.scale.setTo(3.5,3.5);
     var start_text = "Click To Begin!"
-    var style = { font: "72px Helvetica", fill: "#fff", align: "center" };
-    game.add.text(this.world.centerX - 100, 400, start_text, style);
-    bmd = game.make.bitmapData();
-    game.add.button(0,0, bmd, this.startGame, this);
+    new StandardLabelButton(this.world.centerX - 100, 400, start_text, this.startGame, this, 0, 0, 0 ,0);
+    // game.add.text(this.world.centerX - 100, 400, start_text, style);
+    // bmd = game.make.bitmapData();
+    // game.add.button(0,0, bmd, this.startGame, this);
   },
 
   update: function() {

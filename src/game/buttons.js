@@ -15,6 +15,6 @@ var StandardLabelButton = function(x, y, label, callback, callbackContext, overF
 
 LabelButton.prototype = Object.create(Phaser.Button.prototype);
 LabelButton.prototype.constructor = LabelButton;
-LabelButton.prototype.setLabel = function( label ) {
+LabelButton.prototype.setLabel = function(label) {
   this.label.setText(label);
 };
