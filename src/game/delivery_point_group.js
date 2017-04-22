@@ -1,23 +1,28 @@
 function DeliveryPointGroup(){
   this.customers = game.add.group();
   this.customers.enableBody = true;
-  this.spawn(1)
+  this.spawn_locations = ledges.children.map(function(ledge){
+    return {x: ledge.x, y: ledge.y, width: ledge.width}
+    });
+  this.spawn(1);
 }
 
 DeliveryPointGroup.prototype.spawn = function(num_to_spawn){
+  this.randomizeSpawnLocations();
   //num_to_spawn defaults to 1 if no argument passed
   num_to_spawn = typeof num_to_spawn != undefined ? num_to_spawn : 1
 
   for (var i = 0; i < num_to_spawn; i++){
-
-    var random_x = game.rnd.integerInRange(50, game.width -50)
-    var customer = this.customers.create(random_x, game.height - 100, 'arrow');
+    var spawn_place = this.spawn_locations.pop()
+    var random_x = game.rnd.integerInRange(spawn_place.x, spawn_place.width + spawn_place.x)
+    var customer = this.customers.create(random_x, spawn_place.y - 100, 'arrow');
     customer.delivered_to = false;
     customer.tips = 100;
+    customer.location = spawn_place;
   }
 }
 
-DeliveryPointGroup.prototype.should_deliver = function(player, customer){
+DeliveryPointGroup.prototype.shouldDeliver = function(player, customer){
   return !customer.delivered_to
 }
 
@@ -25,6 +30,20 @@ DeliveryPointGroup.prototype.deliver = function(player, customer){
   console.log("DELIVERED!");
   customer.delivered_to = true;
   score.deliverTaco(customer.tips);
+  this.spawn_locations.push(customer.location)
   customer.kill();
-  delivery_points.spawn(1);
+  this.spawn(1);
 }
+
+DeliveryPointGroup.prototype.randomizeSpawnLocations = function(){
+  var j, x, i;
+    for (i = this.spawn_locations.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = this.spawn_locations[i - 1];
+        this.spawn_locations[i - 1] = this.spawn_locations[j];
+        this.spawn_locations[j] = x;
+    }
+}
+//need to keep a list of places to spawn
+//cross them off the spawn list when a customer is spawned there
+//add them back on when that customer is delivered to, after spawning a new one
