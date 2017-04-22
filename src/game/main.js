@@ -75,13 +75,12 @@ var playState = {
     ledges = game.add.group()
     ledges.enableBody = true;
 
-    //creates the delivery point group
-    delivery_points = new DeliveryPointGroup
-
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
     timer = new Timer(615,0, game);
-    this._loadLevel(game.cache.getJSON('level:1'));
+
+    //creates the delivery point group
+    delivery_points = new DeliveryPointGroup
   },
   update: function() {
     // State Update Logic goes here.
@@ -91,7 +90,7 @@ var playState = {
     game.physics.arcade.overlap(player.player, 
                                 delivery_points.customers, 
                                 delivery_points.deliver, 
-                                delivery_points.should_deliver, 
+                                delivery_points.shouldDeliver, 
                                 this)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     score.update();
