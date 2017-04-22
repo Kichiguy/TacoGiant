@@ -90,6 +90,7 @@ var playState = {
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     score.update();
     timer.update();
+    this.checkTimer();
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
@@ -98,7 +99,13 @@ var playState = {
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
     ledge.body.immovable = true;
+  },
+  checkTimer: function(){
+    // if ( parseInt(timer.timerCountdown) <= 0 ){
+    //   game.state.start('gameOver');
+    // }
   }
+
 }
 
 /////// OVER ///////
@@ -112,7 +119,11 @@ var gameOver = {
   },
 
   create: function() {
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+  }
 
+  restartGame: function () {
+    game.state.start('play');
   }
 };
 
@@ -125,4 +136,5 @@ window.onload = function () {
   menuState
   );
   game.state.add('play', playState);
+  game.state.add('gameOver', gameOver)
 };
