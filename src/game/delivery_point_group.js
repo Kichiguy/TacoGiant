@@ -9,7 +9,9 @@ DeliveryPointGroup.prototype.spawn = function(num_to_spawn){
   num_to_spawn = typeof num_to_spawn != undefined ? num_to_spawn : 1
 
   for (var i = 0; i < num_to_spawn; i++){
-    var customer = this.customers.create(100, 500, 'arrow');
+
+    var random_x = game.rnd.integerInRange(50, game.width -50)
+    var customer = this.customers.create(random_x, game.height - 100, 'arrow');
     customer.delivered_to = false;
     customer.tips = 100;
   }
@@ -23,4 +25,5 @@ DeliveryPointGroup.prototype.deliver = function(player, customer){
   console.log("DELIVERED!");
   customer.delivered_to = true;
   //payout tips
+  customer.kill();
 }
