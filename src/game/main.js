@@ -43,6 +43,7 @@ var menuState = {
 
 var player;
 var game;
+var ledges;
 var score;
 var timer;
 
@@ -51,6 +52,7 @@ var playState = {
   },
   preload: function() {
     // State preload logic goes here
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
@@ -65,23 +67,26 @@ var playState = {
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
     var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
     t.anchor.setTo(0.5, 0.3);
-
-    this._loadLevel(game.cache.getJSON('level:1'));
+    ledges.enableBody = true;
     player = new Player();
     score = new Score(0,0);
     timer = new Timer(615,0, game);
+    this._loadLevel(game.cache.getJSON('level:1'));
   },
   update: function() {
     // State Update Logic goes here.
     player.update();
+    var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     score.update();
     timer.update();
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
+
   },
   _spawnPlatform: function(platform){
-    game.add.sprite(platform.x, platform.y, platform.image);
+    ledge = ledges.create(platform.x, platform.y, platform.image);
+    ledge.body.immovable = true;
   }
 }
 
