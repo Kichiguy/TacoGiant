@@ -18,7 +18,7 @@ var state = {
 
     },
     preload: function() {
-        // STate preload logic goes here
+        // State preload logic goes here
         game.load.image('taco', 'assets/taco.png');
     },
     create: function(){
