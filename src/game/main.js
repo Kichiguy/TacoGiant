@@ -16,6 +16,7 @@ var menuState = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.svg');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
+    game.load.image('standardButton', 'assets/sprites/standardButton.png')
   },
 
   create: function() {
