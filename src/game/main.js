@@ -45,9 +45,11 @@ var state = {
   }
 };
 
-window.onload = function () {
-    let game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
-    game.state.add('play', state);
-    game.state.start('play');
-};
+var game = new Phaser.Game(
+  800,
+  480,
+  Phaser.AUTO,
+  'game',
+  state
+);
 
