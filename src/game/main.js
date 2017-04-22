@@ -6,8 +6,6 @@
  *
  */
 
-
-
 /////// MENU ///////
 
 var menuState = {
@@ -18,7 +16,6 @@ var menuState = {
     }
 }
 
-
 /////// PLAY ///////
 
 var playState = {
@@ -28,7 +25,6 @@ var playState = {
 
     }
 }
-
 
 /////// OVER ///////
 
@@ -56,7 +52,7 @@ var state = {
         game.load.image('taco', 'assets/taco.png');
     },
     create: function(){
-      // State create logic goes here
+        // State create logic goes here
         var s = game.add.image(200, 50, 'taco');
         
         var title = "Taco Giant";
