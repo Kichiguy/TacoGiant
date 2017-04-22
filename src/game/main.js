@@ -41,8 +41,8 @@ var menuState = {
 
 /////// PLAY ///////
 
-var player;
 var game;
+var player, delivery_points;
 var ledges;
 var score;
 var timer;
@@ -65,6 +65,7 @@ var playState = {
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
+    game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
   },
   create: function(){
     // State create logic goes here
@@ -74,9 +75,17 @@ var playState = {
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
     var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
     t.anchor.setTo(0.5, 0.3);
-    ledges = game.add.group();
-    ledges.enableBody = true;
+
+    //spawns the player
     player = new Player();
+
+    ledges = game.add.group()
+    ledges.enableBody = true;
+
+    //creates the delivery point group
+    delivery_points = new DeliveryPointGroup
+
+    this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
     timer = new Timer(615,0, game);
     this._loadLevel(game.cache.getJSON('level:1'));
@@ -84,6 +93,13 @@ var playState = {
   update: function() {
     // State Update Logic goes here.
     player.update();
+    //Checks for if the player overlaps a taco delivery point
+    //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
+    game.physics.arcade.overlap(player.player, 
+                                delivery_points.customers, 
+                                delivery_points.deliver, 
+                                delivery_points.should_deliver, 
+                                this)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     score.update();
     timer.update();
