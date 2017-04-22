@@ -1,9 +1,13 @@
 {
     "platforms": [
 
-        {"image": "platform1", "x": 0, "y": 420},
-        {"image": "platform1", "x": 420, "y": 336},
-        {"image": "platform1", "x": 588, "y": 504}
+        {"image": "groundFloorA", "x": 63, "y": 425},
+        {"image": "groundFloorB", "x": 308, "y": 425} ,
+        {"image": "groundFloorC", "x": 554, "y": 425},
+        {"image": "upperFloorA", "x": 308, "y": 250},
+        {"image": "upperFloorB", "x": 556, "y": 250},
+        {"image": "upperFloorD", "x": 554, "y": 75}
+
     ]
 
 }

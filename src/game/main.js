@@ -14,24 +14,18 @@ var menuState = {
 
   //create is a default phaser state function and is automatically called
   preload: function() {
-    game.load.image('logo', 'assets/Tacologo.svg');
-    game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
+    game.load.image('logo', 'assets/Tacologo.png');
+    game.load.image('standardButton', 'assets/sprites/standardButton.png')
   },
 
   create: function() {
     var logo = game.add.image(150,50, 'logo');
-    var arrow = game.add.image(200,450,'arrow')
-    arrow.angle = -90
-    logo.scale.setTo(3.5,3.5);
     var start_text = "Click To Begin!"
-    var style = { font: "72px Helvetica", fill: "#fff", align: "center" };
-    game.add.text(this.world.centerX - 100, 400, start_text, style);
-    bmd = game.make.bitmapData();
-    game.add.button(0,0, bmd, this.startGame, this);
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, start_text, this.startGame, this, 0, 0, 0 ,0);
   },
 
   update: function() {
-    
+
   },
 
   startGame: function() {
@@ -55,19 +49,24 @@ var playState = {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
-    game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
-    game.load.image('platform1', 'assets/sprites/PlaceholderPlatform.png');
+    game.load.image('background', 'assets/Nightscape_BG.png');
+    game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
+    game.load.image('groundFloorB', 'assets/buildingTiles/Building_Lower_Tile2.png');
+    game.load.image('groundFloorC', 'assets/buildingTiles/Building_Lower_Tile3.png');
+    game.load.image('upperFloorA', 'assets/buildingTiles/Building_Upper_Tile1.png');
+    game.load.image('upperFloorB', 'assets/buildingTiles/Building_Upper_Tile2.png');
+    game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
+    game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
+    game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
   },
   create: function(){
     // State create logic goes here
-    var s = game.add.image(200, 50, 'taco');
+    var s = game.add.image(0, 0, 'background');
 
-    var title = "Taco Giant";
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
-    var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
-    t.anchor.setTo(0.5, 0.3);
+
 
     //spawns the player
     player = new Player();
@@ -77,7 +76,7 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0, game);
+    timer = new Timer(615,0, 120);
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
@@ -93,8 +92,8 @@ var playState = {
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     player.update();
-    score.update();
-    timer.update();
+
+    this.checkTimer();
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
@@ -103,7 +102,13 @@ var playState = {
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
     ledge.body.immovable = true;
+  },
+  checkTimer: function(){
+    if ( parseInt(timer.timerCountdown) <= 0 ){
+      game.state.start('gameOver');
+    }
   }
+
 }
 
 /////// OVER ///////
@@ -111,8 +116,18 @@ var playState = {
 var gameOver = {
 
   //create is a default phaser state function as is automatically called
-  create: function() {
+  preload: function() {
+    game.load.image('logo', 'assets/Tacologo.png');
+    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+  },
 
+  create: function() {
+    game.add.image(150,50, 'logo');
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+  },
+
+  restartGame: function () {
+    game.state.start('play');
   }
 };
 
@@ -125,4 +140,5 @@ window.onload = function () {
   menuState
   );
   game.state.add('play', playState);
+  game.state.add('gameOver', gameOver)
 };
