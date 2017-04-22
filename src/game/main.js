@@ -20,23 +20,6 @@ var menuState = {
 
 var playState = {
 
-    //create is a default phaser state function as is automatically called
-    create: function() {
-
-    }
-}
-
-/////// OVER ///////
-
-var gameOver = {
-
-    //create is a default phaser state function as is automatically called
-    create: function() {
-
-    }
-}
-
-var state = {
     init: function() {
         // Delete this init block or replace with your own logic.
 
@@ -63,7 +46,17 @@ var state = {
     update: function() {
         // State Update Logic goes here.
     }
-};
+}
+
+/////// OVER ///////
+
+var gameOver = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
 
 var game = new Phaser.Game(
     800,
