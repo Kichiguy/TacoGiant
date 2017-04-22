@@ -55,7 +55,7 @@ var playState = {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
-    game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
+    game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
     game.load.image('groundFloorB', 'assets/buildingTiles/Building_Lower_Tile2.png');
     game.load.image('groundFloorC', 'assets/buildingTiles/Building_Lower_Tile3.png');
@@ -69,12 +69,10 @@ var playState = {
   },
   create: function(){
     // State create logic goes here
-    var s = game.add.image(200, 50, 'taco');
+    var s = game.add.image(0, 0, 'background');
 
-    var title = "Taco Giant";
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
-    var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
-    t.anchor.setTo(0.5, 0.3);
+
 
     //spawns the player
     player = new Player();
