@@ -67,5 +67,5 @@ var game = new Phaser.Game(
   600,
   Phaser.AUTO,
   'game',
-  state
+  playState
 );
