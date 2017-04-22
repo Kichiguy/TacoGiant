@@ -107,6 +107,12 @@ var playState = {
 var gameOver = {
 
   //create is a default phaser state function as is automatically called
+  preload: function() {
+    game.load.image('logo', 'assets/Tacologo.png');
+    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+
+  }
+
   create: function() {
 
   }
