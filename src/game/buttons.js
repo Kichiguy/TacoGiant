@@ -13,8 +13,8 @@ var StandardLabelButton = function(x, y, label, callback, callbackContext, overF
   game.add.existing( this );
 };
 
-LabelButton.prototype = Object.create(Phaser.Button.prototype);
-LabelButton.prototype.constructor = LabelButton;
-LabelButton.prototype.setLabel = function(label) {
+StandardLabelButton.prototype = Object.create(Phaser.Button.prototype);
+StandardLabelButton.prototype.constructor = LabelButton;
+StandardLabelButton.prototype.setLabel = function(label) {
   this.label.setText(label);
 };
