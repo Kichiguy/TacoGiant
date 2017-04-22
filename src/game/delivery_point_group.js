@@ -4,11 +4,11 @@ function DeliveryPointGroup(){
   this.spawn_locations = ledges.children.map(function(ledge){
     return {x: ledge.x, y: ledge.y, width: ledge.width}
     });
-  this.randomizeSpawnLocations();
   this.spawn(1);
 }
 
 DeliveryPointGroup.prototype.spawn = function(num_to_spawn){
+  this.randomizeSpawnLocations();
   //num_to_spawn defaults to 1 if no argument passed
   num_to_spawn = typeof num_to_spawn != undefined ? num_to_spawn : 1
 
@@ -18,6 +18,7 @@ DeliveryPointGroup.prototype.spawn = function(num_to_spawn){
     var customer = this.customers.create(random_x, spawn_place.y - 100, 'arrow');
     customer.delivered_to = false;
     customer.tips = 100;
+    customer.location = spawn_place;
   }
 }
 
@@ -29,8 +30,9 @@ DeliveryPointGroup.prototype.deliver = function(player, customer){
   console.log("DELIVERED!");
   customer.delivered_to = true;
   score.deliverTaco(customer.tips);
+  this.spawn_locations.push(customer.location)
   customer.kill();
-  delivery_points.spawn(1);
+  this.spawn(1);
 }
 
 DeliveryPointGroup.prototype.randomizeSpawnLocations = function(){

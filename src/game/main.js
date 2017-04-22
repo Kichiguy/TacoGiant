@@ -91,7 +91,7 @@ var playState = {
                                 delivery_points.customers, 
                                 delivery_points.deliver, 
                                 delivery_points.shouldDeliver, 
-                                this)
+                                delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     score.update();
     timer.update();
