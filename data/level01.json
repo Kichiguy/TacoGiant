@@ -1,0 +1,9 @@
+{
+    "platforms": [
+
+        {"image": "platform1", "x": 0, "y": 420},
+        {"image": "platform1", "x": 420, "y": 336},
+        {"image": "platform1", "x": 588, "y": 504}
+    ]
+
+}
