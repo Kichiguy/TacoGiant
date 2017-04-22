@@ -15,20 +15,26 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.svg');
-    game.load.image('button', 'assets/sprites/PlaceholderArrow.png');
+    game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
   },
 
   create: function() {
     var logo = game.add.image(150,50, 'logo');
+    var arrow = game.add.image(200,450,'arrow')
+    arrow.angle = -90
     logo.scale.setTo(3.5,3.5);
-    button = game.add.button(game.world.centerX - 95, 400, 'button', this.start, this, 2, 1, 0);
+    var start_text = "Click To Begin!"
+    var style = { font: "72px Helvetica", fill: "#fff", align: "center" };
+    game.add.text(this.world.centerX - 100, 400, start_text, style);
+    bmd = game.make.bitmapData();
+    game.add.button(0,0, bmd, this.startGame, this);
   },
 
   update: function() {
     
   },
 
-  start: function() {
+  startGame: function() {
     game.state.start('play');
   }
 };
