@@ -6,6 +6,21 @@
  *
  */
 
+
+/////// BOOT ///////
+
+
+/////// LOAD ///////
+
+
+/////// MENU ///////
+
+
+/////// PLAY ///////
+
+
+/////// OVER ///////
+
 var state = {
     init: function() {
         // Delete this init block or replace with your own logic.
