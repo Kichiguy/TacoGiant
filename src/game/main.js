@@ -25,7 +25,6 @@ var menuState = {
     arrow.angle = -90
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX - 100, 400, start_text, this.startGame, this, 0, 0, 0 ,0);
-
   },
 
   update: function() {
