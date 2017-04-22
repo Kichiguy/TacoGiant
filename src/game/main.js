@@ -19,9 +19,16 @@ var state = {
     },
     preload: function() {
         // STate preload logic goes here
+        game.load.image('taco', 'assets/taco.png');
     },
     create: function(){
       // State create logic goes here
+        var s = game.add.image(200, 50, 'taco');
+        
+        var title = "Taco Giant";
+        var style = { font: "72px Arial", fill: "#00F", align: "center" };
+        var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
+        t.anchor.setTo(0.5, 0.3);
     },
     update: function() {
         // State Update Logic goes here.
