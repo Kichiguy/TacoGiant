@@ -56,7 +56,14 @@ var playState = {
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
-    game.load.image('platform1', 'assets/sprites/PlaceholderPlatform.png');
+    game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
+    game.load.image('groundFloorB', 'assets/buildingTiles/Building_Lower_Tile2.png');
+    game.load.image('groundFloorC', 'assets/buildingTiles/Building_Lower_Tile3.png');
+    game.load.image('upperFloorA', 'assets/buildingTiles/Building_Upper_Tile1.png');
+    game.load.image('upperFloorB', 'assets/buildingTiles/Building_Upper_Tile2.png');
+    game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
+    game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
+    game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
   },
   create: function(){
@@ -67,6 +74,7 @@ var playState = {
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
     var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
     t.anchor.setTo(0.5, 0.3);
+    ledges = game.add.group();
     ledges.enableBody = true;
     player = new Player();
     score = new Score(0,0);
