@@ -1,6 +1,6 @@
 function DeliveryPointGroup(){
-  this.points = game.add.group();
-  this.points.enableBody = true;
+  this.customers = game.add.group();
+  this.customers.enableBody = true;
   this.spawn(1)
 }
 
@@ -8,12 +8,19 @@ DeliveryPointGroup.prototype.spawn = function(num_to_spawn){
   //num_to_spawn defaults to 1 if no argument passed
   num_to_spawn = typeof num_to_spawn != undefined ? num_to_spawn : 1
 
-  var point = this.points.create(100, 500, 'arrow');
+  for (var i = 0; i < num_to_spawn; i++){
+    var customer = this.customers.create(100, 500, 'arrow');
+    customer.delivered_to = false;
+    customer.tips = 100;
+  }
 }
 
-DeliveryPointGroup.prototype.should_deliver = function(){
-  console.log("SHJOULD")
+DeliveryPointGroup.prototype.should_deliver = function(player, customer){
+  return !customer.delivered_to
 }
-DeliveryPointGroup.prototype.deliver = function(){
-  console.log("DELIVER")
+
+DeliveryPointGroup.prototype.deliver = function(player, customer){
+  console.log("DELIVERED!");
+  customer.delivered_to = true;
+  //payout tips
 }

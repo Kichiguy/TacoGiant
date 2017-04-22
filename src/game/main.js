@@ -64,9 +64,9 @@ var playState = {
     //Checks for if the player overlaps a taco delivery point
     //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
     game.physics.arcade.overlap(player.player, 
-                                delivery_points.points, 
+                                delivery_points.customers, 
                                 delivery_points.deliver, 
-                                null, 
+                                delivery_points.should_deliver, 
                                 this)
   },
   _loadLevel: function(data){
