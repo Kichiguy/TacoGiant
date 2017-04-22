@@ -44,8 +44,24 @@ var menuState = {
 
 /////// PLAY ///////
 
+var playState = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
+
 
 /////// OVER ///////
+
+var gameOver = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
 
 var state = {
     init: function() {
