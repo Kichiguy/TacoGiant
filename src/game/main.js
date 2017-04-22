@@ -28,6 +28,8 @@ var menuState = {
 
 var player;
 var game;
+var score;
+var timer;
 
 var playState = {
   init: function() {
@@ -51,6 +53,9 @@ var playState = {
     player = new Player();
 
     this._loadLevel(game.cache.getJSON('level:1'));
+    player = new Player();
+    score = new Score(0,0);
+    timer = new Timer(600,0);
   },
   update: function() {
     // State Update Logic goes here.
@@ -61,6 +66,8 @@ var playState = {
   },
   _spawnPlatform: function(platform){
     game.add.sprite(platform.x, platform.y, platform.image);
+    score.update();
+    timer.update();
   }
 }
 
@@ -84,4 +91,5 @@ window.onload = function () {
 game.state.add('play', playState);
 game.state.start('play');
 };
+
 
