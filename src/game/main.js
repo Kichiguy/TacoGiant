@@ -7,6 +7,8 @@
  */
 
 var player;
+var score;
+var timer;
 
 var state = {
   init: function() {
@@ -26,10 +28,14 @@ var state = {
     t.anchor.setTo(0.5, 0.3);
 
     player = new Player();
+    score = new Score(0,0);
+    timer = new Timer(600,0);
   },
   update: function() {
     // State Update Logic goes here.
     player.update();
+    score.update();
+    timer.update();
   }
 };
 
