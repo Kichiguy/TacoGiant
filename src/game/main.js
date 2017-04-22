@@ -1,4 +1,3 @@
-
 /**
  *
  * This is a simple state template to use for getting a Phaser game up
