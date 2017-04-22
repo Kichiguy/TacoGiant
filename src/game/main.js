@@ -37,7 +37,7 @@ var playState = {
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
-    game.load.image('platform', 'assets/sprites/PlaceholderPlatform.png');
+    game.load.image('platform1', 'assets/sprites/PlaceholderPlatform.png');
     game.load.json('level:1', 'data/level01.json');
   },
   create: function(){
