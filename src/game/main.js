@@ -41,8 +41,9 @@ var menuState = {
 
 /////// PLAY ///////
 
-var player;
 var game;
+var player, delivery_points;
+var ledges;
 var score;
 var timer;
 
@@ -51,11 +52,13 @@ var playState = {
   },
   preload: function() {
     // State preload logic goes here
+    game.physics.startSystem(Phaser.Physics.ARCADE);
     game.load.image('taco', 'assets/taco.png');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('background', 'assets/sprites/PlaceholderBackground.png');
     game.load.image('platform1', 'assets/sprites/PlaceholderPlatform.png');
     game.load.json('level:1', 'data/level01.json');
+    game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
   },
   create: function(){
     // State create logic goes here
@@ -66,20 +69,37 @@ var playState = {
     var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
     t.anchor.setTo(0.5, 0.3);
 
-    this._loadLevel(game.cache.getJSON('level:1'));
+    //spawns the player
     player = new Player();
+
+    ledges = game.add.group()
+    ledges.enableBody = true;
+
+    //creates the delivery point group
+    delivery_points = new DeliveryPointGroup
     score = new Score(0,0);
     timer = new Timer(615,0, 120);
+    this._loadLevel(game.cache.getJSON('level:1'));
   },
   update: function() {
     // State Update Logic goes here.
     player.update();
+    //Checks for if the player overlaps a taco delivery point
+    //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
+    game.physics.arcade.overlap(player.player,
+                                delivery_points.customers,
+                                delivery_points.deliver,
+                                delivery_points.should_deliver,
+                                this)
+    var hitPlatform = game.physics.arcade.collide(player.player, ledges);
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
+
   },
   _spawnPlatform: function(platform){
-    game.add.sprite(platform.x, platform.y, platform.image);
+    ledge = ledges.create(platform.x, platform.y, platform.image);
+    ledge.body.immovable = true;
   }
 }
 
