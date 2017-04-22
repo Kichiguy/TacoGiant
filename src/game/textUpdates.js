@@ -5,16 +5,18 @@ function Score(x, y){
 
   var scoreLabel = game.add.text(x, y, scoreLabelText, scoreStyle);
   var score = game.add.text(x, y + 25, scoreUpdateText, scoreStyle);
-
-
 }
 
 Score.prototype.deliverTaco = function(points){
-
+  scoreUpdateText = scoreUpdateText + points;
 }
 
 Score.prototype.propertyDamage = function(points) {
+  scoreUpdateText = scoreUpdateText - points;
+}
 
+Score.prototype.update = function() {
+  score.text = scoreUpdateText;
 }
 
 function Timer(x, y){

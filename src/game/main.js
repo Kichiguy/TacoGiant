@@ -53,6 +53,7 @@ var playState = {
   update: function() {
     // State Update Logic goes here.
     player.update();
+    score.update();
   }
 }
 
