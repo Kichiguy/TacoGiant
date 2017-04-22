@@ -24,7 +24,7 @@ DeliveryPointGroup.prototype.should_deliver = function(player, customer){
 DeliveryPointGroup.prototype.deliver = function(player, customer){
   console.log("DELIVERED!");
   customer.delivered_to = true;
-  //payout tips
+  score.deliverTaco(customer.tips);
   customer.kill();
   delivery_points.spawn(1);
 }
