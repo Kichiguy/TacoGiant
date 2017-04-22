@@ -28,6 +28,7 @@ var menuState = {
 /////// PLAY ///////
 
 var player;
+var game;
 
 var playState = {
   init: function() {
@@ -50,7 +51,7 @@ var playState = {
     t.anchor.setTo(0.5, 0.3);
     player = new Player();
 
-    _loadLevel(this.game.cache.getJSON('level:1'));
+    this._loadLevel(game.cache.getJSON('level:1'));
   },
   update: function() {
     // State Update Logic goes here.
@@ -74,12 +75,14 @@ var gameOver = {
   }
 }
 
-var game = new Phaser.Game(
+window.onload = function () {
+  game = new Phaser.Game(
   800,
   600,
   Phaser.AUTO,
-  'game',
-
-  playState
+  'game'
 );
+game.state.add('play', playState);
+game.state.start('play');
+};
 
