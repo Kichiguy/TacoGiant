@@ -87,5 +87,6 @@ window.onload = function () {
   Phaser.AUTO,
   'game',
   menuState
-);
-game.state.add('play', playState);
+  );
+  game.state.add('play', playState);
+};
