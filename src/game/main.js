@@ -10,6 +10,7 @@
 /////// BOOT ///////
 
 //each state starts as an object which define the properties of each game state
+//the boot state will load our physics engine
 var bootState = {
 
     //create is a default phaser state function as is automatically called
