@@ -120,7 +120,7 @@ var gameOver = {
 
   create: function() {
     new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
-  }
+  },
 
   restartGame: function () {
     game.state.start('play');
