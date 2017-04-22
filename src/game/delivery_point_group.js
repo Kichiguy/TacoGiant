@@ -26,4 +26,5 @@ DeliveryPointGroup.prototype.deliver = function(player, customer){
   customer.delivered_to = true;
   //payout tips
   customer.kill();
+  delivery_points.spawn(1);
 }
