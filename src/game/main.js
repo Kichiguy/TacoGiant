@@ -26,16 +26,24 @@ var menuState = {
 
 /////// PLAY ///////
 
+var player;
+
 var playState = {
+  init: function() {
+  },
+  preload: function() {
+    // State preload logic goes here
+    game.load.image('taco', 'assets/taco.png');
+    game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
+  },
+  create: function(){
+  // State create logic goes here
+    var s = game.add.image(200, 50, 'taco');
 
-    init: function() {
-        // Delete this init block or replace with your own logic.
-
-        // Create simple text display for current Phaser version
-        // var text = "Phaser Version "+Phaser.VERSION + " works!";
-        // var style = { font: "24px Arial", fill: "#fff", align: "center" };
-        // var t = game.add.text(this.world.centerX, this.world.centerY, text, style);
-        // t.anchor.setTo(0.5, 0.5);
+    var title = "Taco Giant";
+    var style = { font: "72px Arial", fill: "#00F", align: "center" };
+    var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
+    t.anchor.setTo(0.5, 0.3);
 
     },
     preload: function() {
@@ -50,9 +58,11 @@ var playState = {
         var style = { font: "72px Arial", fill: "#00F", align: "center" };
         var t = game.add.text(this.world.centerX, this.world.centerY, title, style);
         t.anchor.setTo(0.5, 0.3);
+        player = new Player();
     },
     update: function() {
         // State Update Logic goes here.
+        player.update();
     }
 }
 
