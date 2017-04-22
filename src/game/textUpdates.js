@@ -1,36 +1,31 @@
 function Score(x, y){
   var scoreLabelText = "Score: ";
-  var scoreUpdateText;
+  var scoreUpdateText = 0;
   var scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
 
-  var score = game.add.text(x, y, scoreLabelText, scoreStyle);
+  var scoreLabel = game.add.text(x, y, scoreLabelText, scoreStyle);
+  var score = game.add.text(x, y + 25, scoreUpdateText, scoreStyle);
+
 
 }
 
-Score.prototype.update = function(){
+Score.prototype.deliverTaco = function(points){
 
 }
 
-Score.prototype.deliverTaco(points) {
-
-}
-
-Score.prototype.propertyDamage(points) {
+Score.prototype.propertyDamage = function(points) {
 
 }
 
 function Timer(x, y){
   var timerLabelText = "Time Remaining: ";
-  var timerUpdateText;
-  var timerStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
+  var timerUpdateText = 0;
+  var timerStyle = {font: "24px Arial", fill: "#ffffff", align: "right"};
 
-  var timer = game.add.text(x, y, timerLabelText, timerStyle);
+  var timerLabel = game.add.text(x, y, timerLabelText, timerStyle);
+  var timer = game.add.text(x, y + 25, timerUpdateText, timerStyle);
 }
 
-Timer.prototype.update = function() {
+Timer.prototype.addTime = function() {
 
-}
-
-Timer.prototype.addTime() {
-  
 }
