@@ -72,6 +72,7 @@ var playState = {
     //spawns the player
     player = new Player();
 
+    ledges = game.add.group()
     ledges.enableBody = true;
 
     //creates the delivery point group
