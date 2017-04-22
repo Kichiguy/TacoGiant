@@ -9,6 +9,15 @@
 
 /////// BOOT ///////
 
+//each state starts as anobject which define the properties of each game state
+var bootState = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
+
 
 /////// LOAD ///////
 
