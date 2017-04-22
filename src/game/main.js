@@ -33,6 +33,14 @@ var loadState = {
 
 /////// MENU ///////
 
+var menuState = {
+
+    //create is a default phaser state function as is automatically called
+    create: function() {
+
+    }
+}
+
 
 /////// PLAY ///////
 
