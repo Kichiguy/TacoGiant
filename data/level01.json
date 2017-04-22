@@ -1,0 +1,9 @@
+{
+    "platforms": [
+
+        {"image": "assets/sprites/PlaceholderPlatform.png", "x": 0, "y": 420},
+        {"image": "assets/sprites/PlaceholderPlatform.png", "x": 420, "y": 336},
+        {"image": "assets/sprites/PlaceholderPlatform,png", "x": 588, "y": 504}
+    ]
+
+}
