@@ -36,7 +36,7 @@ var menuState = {
 /////// PLAY ///////
 
 var game;
-var player, delivery_points, townsfolk, customers;
+var player, townsfolk, customers;
 var ledges;
 var score;
 var timer;
