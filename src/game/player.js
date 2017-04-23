@@ -20,7 +20,7 @@ Player.prototype.update = function(){
   if(this.cursors.left.isDown){
     body.velocity.x = -60;
   }
-  if(this.cursors.up.isDown && (body.touching.down || body.checkWorldBounds())){
+  if(this.cursors.up.isDown && (body.touching.down || body.blocked.down)){
     body.velocity.y = -1500;
   }
 }
