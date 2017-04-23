@@ -65,7 +65,8 @@ var playState = {
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
-    game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png')
+    game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
+    game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
   },
   create: function(){
     // State create logic goes here
@@ -96,7 +97,7 @@ var playState = {
     customers = game.add.group();
     customers.enableBody = true;
     Customers.spawnCustomer(customers, townsfolk);
-    tacometer = new Tacometer(100, 15, 'tinyTaco')
+    tacometer = new Tacometer(130, 25, 'tinyTaco')
   },
   update: function() {
     // State Update Logic goes here.
