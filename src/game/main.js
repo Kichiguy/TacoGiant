@@ -15,7 +15,7 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/standardButton.png');
   },
 
   create: function() {
@@ -41,7 +41,7 @@ var ledges;
 var score;
 var timer;
 var background;
-var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
 var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
