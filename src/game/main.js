@@ -60,7 +60,6 @@ var playState = {
     game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
-    game.load.json('level:1', 'data/level01.json');
     game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,4);
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
@@ -108,18 +107,11 @@ var playState = {
     this.checkTimer();
   },
   _loadLevel: function(data){
-    //data.platforms.forEach(this._spawnPlatform, this);
     ground = new PlaceTile(0,552,'street');
     new GenerateGrid;
   },
 
-  _spawnPlatform: function(platform){
-    ledge = ledges.create(platform.x, platform.y, platform.image);
-    ledge.body.checkCollision.left = false;
-    ledge.body.checkCollision.right = false;
-    ledge.body.checkCollision.down = false;
-    ledge.body.immovable = true;
-  },
+
   checkTimer: function(){
     if ( parseInt(timer.timerCountdown) <= 0 ){
       game.state.start('gameOver');

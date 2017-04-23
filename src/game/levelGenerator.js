@@ -1,4 +1,3 @@
-//define a 'place tile' function
 function PlaceTile(x,y,asset){
   tile = ledges.create(x,y,asset);
   tile.body.checkCollision.left = false;
@@ -29,7 +28,6 @@ function GenerateGrid(){
     var ycoordinate;
     for(j = 1;j<=height;j++){
     	let ycoordinate  = 551-((j)*150);
-    	console.log(xcoordinate,ycoordinate);
     	new PlaceTile(xcoordinate,ycoordinate, chooseTile(j));
     }
     i = (xcoordinate + 150);
