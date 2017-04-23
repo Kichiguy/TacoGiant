@@ -47,8 +47,6 @@ var playState = {
   preload: function() {
     // State preload logic goes here
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.load.image('taco', 'assets/taco.png');
-    game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
     game.load.image('groundFloorB', 'assets/buildingTiles/Building_Lower_Tile2.png');
@@ -59,8 +57,10 @@ var playState = {
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
+    game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolk.png', 10,10,4);
+
   },
   create: function(){
     // State create logic goes here
@@ -68,16 +68,15 @@ var playState = {
 
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
-
-    //spawns the player
-    player = new Player();
-
     ledges = game.add.group()
     ledges.enableBody = true;
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
     timer = new Timer(615,0, 120);
+
+    //spawns the player
+    player = new Player();
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
@@ -102,6 +101,9 @@ var playState = {
   },
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
+    ledge.body.checkCollision.left = false;
+    ledge.body.checkCollision.right = false;
+    ledge.body.checkCollision.down = false;
     ledge.body.immovable = true;
   },
   checkTimer: function(){
