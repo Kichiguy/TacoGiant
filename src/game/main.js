@@ -60,6 +60,7 @@ var playState = {
     game.load.json('level:1', 'data/level01.json');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
+    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolk.png', 10,10,4);
 
   },
   create: function(){
@@ -85,10 +86,10 @@ var playState = {
     // State Update Logic goes here.
     //Checks for if the player overlaps a taco delivery point
     //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
-    game.physics.arcade.overlap(player.player, 
-                                delivery_points.customers, 
-                                delivery_points.deliver, 
-                                delivery_points.shouldDeliver, 
+    game.physics.arcade.overlap(player.player,
+                                delivery_points.customers,
+                                delivery_points.deliver,
+                                delivery_points.shouldDeliver,
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     player.update();
