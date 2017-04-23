@@ -76,7 +76,7 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0,120);
+    timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
 
     //spawns the player
@@ -101,6 +101,8 @@ var playState = {
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+
+    Customers.checkOutOfBounds(customers);
     player.update();
     game.world.wrap(player.player, 0, true);
     this.checkTimer();

@@ -1,4 +1,39 @@
 var Customers = {
+  checkOutOfBounds: function(customerGroup){
+    for(var i = 0; i < customerGroup.children.length; i++){
+      var customer = customerGroup.children[i]
+      var customer_thoughts = customer.thoughts
+      
+      if(customer_thoughts.x + customer_thoughts.width > game.camera.x + game.camera.width || 
+         customer_thoughts.x < game.camera.x){
+        //if the thought bubble that indicates a customer is hungry is not on screen
+        if(customer.offscreenIndicator === undefined){
+          //and if there isn't already an indicator of customer off screen
+          var distance = customer.body.x - player.player.body.x
+          var x_coordinate = ((Math.abs(distance) < game.world.width / 2 && distance > 0) ||
+                              (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 50 : 0
+          customer.offscreenIndicator = game.add.sprite(x_coordinate, customer.body.y, 'arrow')
+          customer.offscreenIndicator.fixedToCamera = true;
+        }
+      } else{
+        //the thought bubble is on screen
+        if(customer.offscreenIndicator !== undefined){
+          //there is an indicator to remove
+          customer.offscreenIndicator.kill();
+          customer.offscreenIndicator = undefined;
+        }
+      }
+    }
+  },
+  deliverTaco: function(giant, customer){
+    score.deliverTaco(customer.tips);
+    timer.addTime(5);
+    customer.thoughts.kill();
+    customer.kill();
+    customer.parent.remove(customer);
+    Townsfolk.spawnTownsfolk(ledges.children, 1);
+    Customers.spawnCustomer(customers,townsfolk);
+  },
   spawnCustomer: function(customerGroup, townsfolkGroup){
     var townsperson = townsfolkGroup.getRandom();
     customerGroup.add(townsperson);
@@ -13,15 +48,8 @@ var Customers = {
     townsperson.thoughts = indicator;
     townsperson.thoughts.animations.add('blink')
     townsperson.thoughts.play('blink',4, true)
-    },
+    }
 
-  deliverTaco: function(giant, customer){
-    score.deliverTaco(customer.tips);
-    customer.thoughts.kill();
-    customer.kill();
-    Townsfolk.spawnTownsfolk(ledges.children, 1);
-    Customers.spawnCustomer(customers,townsfolk);
-  }
 
 }
 
