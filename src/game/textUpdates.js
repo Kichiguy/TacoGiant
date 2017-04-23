@@ -40,3 +40,30 @@ Timer.prototype.updateTimer = function() {
   this.timerCountdown = parseInt(this.timerCountdown) - 1;
   this.timer.setText(this.timerCountdown);
 }
+
+var PauseMenu = function(x,y) {
+  this.pauseLabelText = "PAUSE";
+  this.labelStyle = {font: "24px Arial", fill: "#ffffff", align: "right"};
+  this.pauseLabel = game.add.text(x, y, this.pauseLabelText, this.labelStyle);
+  this.pauseLabel.fixedToCamera = true;
+  this.pauseLabel.inputEnabled = true;
+  //make the label pause the game
+
+  var context = this;
+  this.pauseLabel.events.onInputUp.add(function() {
+    //pause the game
+    game.paused = true;
+    //render the menu
+    context.createResumeButton(context.resumePlay);
+    context.createRestartButton();
+  });
+};
+PauseMenu.prototype.resumePlay = function(){
+  console.log("RESUME SUCKERS");
+}
+PauseMenu.prototype.createResumeButton = function(callback){
+  new StandardLabelButton(150, 200, "Resume", callback, this, 0,0,0,0);
+};
+PauseMenu.prototype.createRestartButton = function(){
+  new StandardLabelButton(150, 400, "Restart", gameOver.restartGame, gameOver, 0,0,0,0);
+}

@@ -75,7 +75,8 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0, 120);
+    timer = new Timer(615,0,120);
+    menu = new PauseMenu(700, 50);
 
     //spawns the player
     player = new Player();
