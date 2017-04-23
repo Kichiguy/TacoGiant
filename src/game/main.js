@@ -15,7 +15,7 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/standardButton.png');
   },
 
   create: function() {
@@ -41,6 +41,8 @@ var ledges;
 var score;
 var timer;
 var background;
+var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
   init: function() {
@@ -58,7 +60,6 @@ var playState = {
     game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
-    game.load.json('level:1', 'data/level01.json');
     game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,4);
     game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86);
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
@@ -77,7 +78,7 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0,120);
+    timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
 
     //spawns the player
@@ -102,21 +103,18 @@ var playState = {
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+
+    Customers.checkOutOfBounds(customers);
     player.update();
     game.world.wrap(player.player, 0, true);
     this.checkTimer();
   },
   _loadLevel: function(data){
-    data.platforms.forEach(this._spawnPlatform, this);
+    ground = new PlaceTile(0,552,'street');
+    new GenerateGrid;
+  },
 
-  },
-  _spawnPlatform: function(platform){
-    ledge = ledges.create(platform.x, platform.y, platform.image);
-    ledge.body.checkCollision.left = false;
-    ledge.body.checkCollision.right = false;
-    ledge.body.checkCollision.down = false;
-    ledge.body.immovable = true;
-  },
+
   checkTimer: function(){
     if ( parseInt(timer.timerCountdown) <= 0 ){
       game.state.start('gameOver');

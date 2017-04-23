@@ -15,10 +15,10 @@ Player.prototype.update = function(){
   //Controls movement
   body.velocity.x = 0;
   if(this.cursors.right.isDown){
-    body.velocity.x = 60;
+    body.velocity.x = 600;
   }
   if(this.cursors.left.isDown){
-    body.velocity.x = -60;
+    body.velocity.x = -600;
   }
   if(this.cursors.up.isDown && (body.touching.down || body.checkWorldBounds())){
     body.velocity.y = -250;
