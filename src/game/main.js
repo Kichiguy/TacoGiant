@@ -72,6 +72,7 @@ var playState = {
     player = new Player();
 
     ledges = game.add.group()
+    ledges.enableBody = true;
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
@@ -100,8 +101,7 @@ var playState = {
   },
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
-    //ledges.enableBody = true;
-    //ledge.body.immovable = true;
+    ledge.body.immovable = true;
   },
   checkTimer: function(){
     if ( parseInt(timer.timerCountdown) <= 0 ){
