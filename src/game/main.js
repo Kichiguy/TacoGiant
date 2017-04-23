@@ -96,7 +96,6 @@ var playState = {
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     player.update();
-    game.camera
     this.checkTimer();
   },
   _loadLevel: function(data){
