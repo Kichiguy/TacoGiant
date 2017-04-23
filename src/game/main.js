@@ -41,6 +41,8 @@ var ledges;
 var score;
 var timer;
 var background;
+var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
   init: function() {
@@ -106,9 +108,11 @@ var playState = {
     this.checkTimer();
   },
   _loadLevel: function(data){
-    data.platforms.forEach(this._spawnPlatform, this);
-
+    //data.platforms.forEach(this._spawnPlatform, this);
+    ground = new PlaceTile(0,552,'street');
+    new GenerateGrid;
   },
+
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
     ledge.body.checkCollision.left = false;
