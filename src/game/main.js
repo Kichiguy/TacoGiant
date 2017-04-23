@@ -40,6 +40,7 @@ var player, delivery_points;
 var ledges;
 var score;
 var timer;
+var background;
 
 var playState = {
   init: function() {
@@ -65,7 +66,8 @@ var playState = {
   },
   create: function(){
     // State create logic goes here
-    var s = game.add.image(0, 0, 'background');
+    background = game.add.tileSprite(0, 0, 2400, 600, 'background');
+    game.world.setBounds(0, 0, 2400, 600);
 
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
@@ -78,6 +80,7 @@ var playState = {
 
     //spawns the player
     player = new Player();
+    game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
@@ -93,7 +96,7 @@ var playState = {
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     player.update();
-
+    game.camera
     this.checkTimer();
   },
   _loadLevel: function(data){
@@ -111,7 +114,7 @@ var playState = {
     if ( parseInt(timer.timerCountdown) <= 0 ){
       game.state.start('gameOver');
     }
-  }
+  },
 
 }
 
