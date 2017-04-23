@@ -86,7 +86,7 @@ var playState = {
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
-    spawnTownsfolk(ledges.children, 20);
+    Townsfolk.spawnTownsfolk(ledges.children, 20);
     Townsfolk.spawnTownsfolk(ledges.children, 20)
 
     //creates the delivery point group
