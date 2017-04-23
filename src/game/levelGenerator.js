@@ -7,17 +7,17 @@ function PlaceTile(x,y,asset){
   tile.body.immovable = true;
 };
 
-function chooseTile(ycoordinate){
+function chooseTile(height){
   var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
   var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
   var y,tile;
-  if(height>0){
-  	for(i=0,i<height,i++){
-  		x = (i*150)+63
-  		var tile = lowerFLoorArray[Math.floor(Math.random() * myArray.length)];
-  	}
+  if(height>1){
+    tile = upperFLoorArray[Math.floor(Math.random() * upperFLoorArray.length)];
   }
-  return y,tile;
+  else if(height ==1){
+    tile = lowerFloorArray[Math.floor(Math.random()* upperFloorArray.length)]
+  }
+  return tile;
 };
 
 function GenerateGrid(){
@@ -33,6 +33,8 @@ function GenerateGrid(){
     //}
     i = ycoordinate + 182;
   }
+
+    	//xcoordinate = (i*150)+63
 };
 
 
