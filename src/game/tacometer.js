@@ -13,7 +13,7 @@ function Tacometer(x,y,spriteTag){
 Tacometer.prototype = Object.create(Phaser.Group.prototype);
 Tacometer.prototype.initializeTacometer = function(x,y,spriteTag){
   for(var i = this.tacoCount; i > 0; i -= 1){
-    let a = this.create(x,y,spriteTag);
+    var a = this.create(x,y,spriteTag);
     a.anchor.setTo(0.5, 0.5);
     a.fixedToCamera = true;
     x+=30;
@@ -22,7 +22,7 @@ Tacometer.prototype.initializeTacometer = function(x,y,spriteTag){
 Tacometer.prototype.loseATaco = function(){
   if(this.tacoCount > 0){
     this.tacoCount -= 1;
-    let lostTaco = this.getTop();
+    var lostTaco = this.getTop();
     this.emitter.x = lostTaco.x;
     this.emitter.y = lostTaco.y;
     lostTaco.destroy();

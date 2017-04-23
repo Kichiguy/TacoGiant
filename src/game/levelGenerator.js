@@ -23,11 +23,11 @@ function GenerateGrid(){
   var ptable = [1,1,1,1,1,1,0,0,2,2,2,2,3,3,3];
   var i = 0;
   while (i < 2350) {
-    let xcoordinate =  i + Math.floor(Math.random() * 100)+30;
-    height = ptable[Math.floor(Math.random() * ptable.length)];
+    var xcoordinate =  i + Math.floor(Math.random() * 100)+30;
+    var height = ptable[Math.floor(Math.random() * ptable.length)];
     var ycoordinate;
     for(j = 1;j<=height;j++){
-    	let ycoordinate  = 551-((j)*150);
+    	var ycoordinate  = 551-((j)*150);
     	new PlaceTile(xcoordinate,ycoordinate, chooseTile(j));
     }
     i = (xcoordinate + 150);
