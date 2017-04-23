@@ -1,3 +1,28 @@
+var Customers = {
+  spawnCustomer: function(customerGroup, townsfolkGroup){
+    var townsperson = townsfolkGroup.getRandom();
+    customerGroup.add(townsperson);
+
+    townsperson.delivered_to = false;
+    townsperson.tips = 100;
+    townsperson.body.velocity.x = 0;
+
+    var indicator = game.add.sprite(townsperson.body.x + townsperson.body.width,
+                                    townsperson.body.y, 'arrow')
+    
+    townsperson.thoughts = indicator;
+    },
+
+  deliverTaco: function(giant, customer){
+    score.deliverTaco(customer.tips);
+    customer.thoughts.kill();
+    customer.kill();
+    Townsfolk.spawnTownsfolk(ledges.children, 1);
+    Customers.spawnCustomer(customers,townsfolk);
+  }
+
+}
+
 function DeliveryPointGroup(){
   this.customers = game.add.group();
   this.customers.enableBody = true;
