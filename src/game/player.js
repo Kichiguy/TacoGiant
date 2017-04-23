@@ -4,7 +4,7 @@ function Player(){
   game.physics.arcade.enable(this.player);
   this.player.body.bounce.y=.02;
   this.player.body.gravity.y = 200;
-  this.player.body.collideWorldBounds = true;
+  // this.player.body.collideWorldBounds = true;
 
   this.cursors = game.input.keyboard.createCursorKeys();
 }
@@ -21,6 +21,6 @@ Player.prototype.update = function(){
     body.velocity.x = -60;
   }
   if(this.cursors.up.isDown && (body.touching.down || body.checkWorldBounds())){
-    body.velocity.y = -1500;
+    body.velocity.y = -250;
   }
 }
