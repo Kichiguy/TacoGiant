@@ -37,6 +37,7 @@ var Customers = {
   },
   deliverTaco: function(giant, customer){
     score.deliverTaco(customer.tips);
+    tacometer.loseATaco();
     timer.addTime(5);
     customer.thoughts.kill();
     customer.kill();
