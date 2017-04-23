@@ -120,7 +120,7 @@ var playState = {
     if ( parseInt(timer.timerCountdown) <= 0 ){
       game.state.start('gameOver');
     }
-  },
+  }
 
 }
 
