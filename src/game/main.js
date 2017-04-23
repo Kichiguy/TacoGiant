@@ -72,7 +72,6 @@ var playState = {
     player = new Player();
 
     ledges = game.add.group()
-    ledges.enableBody = true;
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
@@ -100,7 +99,8 @@ var playState = {
   },
   _spawnPlatform: function(platform){
     ledge = ledges.create(platform.x, platform.y, platform.image);
-    ledge.body.immovable = true;
+    //ledges.enableBody = true;
+    //ledge.body.immovable = true;
   },
   checkTimer: function(){
     if ( parseInt(timer.timerCountdown) <= 0 ){
