@@ -8,9 +8,11 @@ var Customers = {
     townsperson.body.velocity.x = 0;
 
     var indicator = game.add.sprite(townsperson.body.x + townsperson.body.width,
-                                    townsperson.body.y, 'arrow')
+                                    townsperson.body.y - 94, 'thoughtBubble')
     
     townsperson.thoughts = indicator;
+    townsperson.thoughts.animations.add('blink')
+    townsperson.thoughts.play('blink',4, true)
     },
 
   deliverTaco: function(giant, customer){
