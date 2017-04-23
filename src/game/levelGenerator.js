@@ -1,12 +1,16 @@
 //define 'place tile' function
-function placeTile(x,y,asset)
-  tile = this.create(x,y,image);
-  ledge.body.checkCollision.left = false;
-  ledge.body.checkCollision.right = false;
-  ledge.body.checkCollision.down = false;
-  ledge.body.immovable = true;
-};
+function PlaceTile(x,y,asset){
+  tile = game.add.sprite(x,y,asset);
+  game.physics.arcade.enable(tile);
+  var hitPlatform = game.physics.arcade.collide(this.player.player, tile);
+  tile.body.checkCollision.left = false;
+  tile.body.checkCollision.right = false;
+  tile.body.checkCollision.down = false;
+  tile.body.immovable = true;
+}
 //put the road on the ground
+
+
 
 //decide the points for the left side of each building block
 

@@ -98,6 +98,7 @@ var playState = {
   },
   _loadLevel: function(data){
     data.platforms.forEach(this._spawnPlatform, this);
+    new PlaceTile(0,552,'street');
 
   },
   _spawnPlatform: function(platform){
