@@ -77,7 +77,7 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0,120);
+    timer = new Timer(615,0,12);
     menu = new PauseMenu(700, 50);
 
     //spawns the player
@@ -138,7 +138,8 @@ var gameOver = {
   create: function() {
     //resets the world bounds so we can center stuff to the viewport
     game.world.setBounds(0, 0, 800, 600);
-    game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
+    var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
+    logo.anchor.setTo(0.5, 0.5);
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
