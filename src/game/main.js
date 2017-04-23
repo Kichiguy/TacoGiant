@@ -58,6 +58,7 @@ var playState = {
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
+    game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,4);
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
@@ -84,8 +85,7 @@ var playState = {
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
-    spawnTownsfolk(ledges.children, 20)
-
+    spawnTownsfolk(ledges.children, 20);
   },
   update: function() {
     // State Update Logic goes here.
