@@ -1,4 +1,3 @@
-//define a 'place tile' function
 function PlaceTile(x,y,asset){
   tile = ledges.create(x,y,asset);
   tile.body.checkCollision.left = false;
@@ -8,35 +7,29 @@ function PlaceTile(x,y,asset){
 };
 
 function chooseTile(height){
+  var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+  var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
   var tile;
   if(height > 1){
-    let tile = upperFLoorArray[Math.floor(Math.random() * upperFLoorArray.length)];
+    tile = upperFloorArray[Math.floor(Math.random() * upperFloorArray.length)];
   }
   else if(height == 1){
-    let tile = lowerFloorArray[Math.floor(Math.random()* lowerFloorArray.length)];
-  }
+    tile = lowerFloorArray[Math.floor(Math.random()* lowerFloorArray.length)];
+  };
   return tile;
 };
 
 function GenerateGrid(){
-  //write columns
+  var ptable = [1,1,1,1,1,1,0,0,2,2,2,2,3,3,3];
   var i = 0;
-   while (i < 2400) {
-    let xcoordinate =  i + Math.floor(Math.random() * 80);
-    height = Math.floor(Math.random()*4);
+  while (i < 2350) {
+    let xcoordinate =  i + Math.floor(Math.random() * 100)+30;
+    height = ptable[Math.floor(Math.random() * ptable.length)];
     var ycoordinate;
-    for(j = 0;j<height;j++){
-    	let ycoordinate  = 550-((j+1)*150);
-    	console.log(xcoordinate,ycoordinate);
-    	new PlaceTile(xcoordinate,ycoordinate, 'groundFloorB');
+    for(j = 1;j<=height;j++){
+    	let ycoordinate  = 551-((j)*150);
+    	new PlaceTile(xcoordinate,ycoordinate, chooseTile(j));
     }
     i = (xcoordinate + 150);
-
   }
-
 };
-
-
-//generate an array of x,y,image
-
-//read array from _loadLevel() in main

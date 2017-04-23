@@ -15,7 +15,7 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/standardButton.png');
   },
 
   create: function() {
@@ -41,7 +41,7 @@ var ledges;
 var score;
 var timer;
 var background;
-var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
 var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
@@ -60,7 +60,6 @@ var playState = {
     game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
-    game.load.json('level:1', 'data/level01.json');
     game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,4);
     game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86);
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
@@ -111,18 +110,11 @@ var playState = {
     this.checkTimer();
   },
   _loadLevel: function(data){
-    //data.platforms.forEach(this._spawnPlatform, this);
     ground = new PlaceTile(0,552,'street');
     new GenerateGrid;
   },
 
-  _spawnPlatform: function(platform){
-    ledge = ledges.create(platform.x, platform.y, platform.image);
-    ledge.body.checkCollision.left = false;
-    ledge.body.checkCollision.right = false;
-    ledge.body.checkCollision.down = false;
-    ledge.body.immovable = true;
-  },
+
   checkTimer: function(){
     if ( parseInt(timer.timerCountdown) <= 0 ){
       game.state.start('gameOver');
