@@ -60,7 +60,7 @@ var playState = {
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.json('level:1', 'data/level01.json');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
-    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolk.png', 10,10,4);
+    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
   },
   create: function(){
     // State create logic goes here
@@ -81,6 +81,9 @@ var playState = {
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
+
+    //creates a townsfolk
+    var town = new Townsfolk(100,100)
   },
   update: function() {
     // State Update Logic goes here.
