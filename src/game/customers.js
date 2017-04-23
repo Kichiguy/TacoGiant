@@ -11,21 +11,25 @@ var Customers = {
           //and if there isn't already an indicator of customer off screen, make one
           var distance = customer.body.x - player.player.body.x
           var x_coordinate = ((Math.abs(distance) < game.world.width / 2 && distance > 0) ||
-                              (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 50 : 0
-          customer.offscreenIndicator = game.add.sprite(x_coordinate, customer.body.y, 'arrow')
-          customer.offscreenIndicator.fixedToCamera = true;
+                              (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
+          customer.offscreenIndicator = new TacoIndicator(x_coordinate, customer.y - 50)
+          customer.offscreenIndicator.indicator.fixedToCamera = true;
+          x_coordinate === 0 ? customer.offscreenIndicator.pointLeft() : customer.offscreenIndicator.pointRight();
         } else {
           //otherwise, make sure the indicator is on the correct side of the screen
           var distance = customer.body.x - player.player.body.x
           var x_coordinate = ((Math.abs(distance) < game.world.width / 2 && distance > 0) ||
-                              (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 50 : 0
-         customer.offscreenIndicator.cameraOffset.x = x_coordinate
+                              (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
+          if(customer.offscreenIndicator.indicator.cameraOffset.x != x_coordinate){
+            x_coordinate === 0 ? customer.offscreenIndicator.pointLeft() : customer.offscreenIndicator.pointRight();
+          }
+          customer.offscreenIndicator.indicator.cameraOffset.x = x_coordinate
         }
       } else{
         //the thought bubble is on screen
         if(customer.offscreenIndicator !== undefined){
           //there is an indicator to remove
-          customer.offscreenIndicator.kill();
+          customer.offscreenIndicator.indicator.kill();
           customer.offscreenIndicator = undefined;
         }
       }
@@ -55,6 +59,8 @@ var Customers = {
     townsperson.thoughts = indicator;
     townsperson.thoughts.animations.add('blink')
     townsperson.thoughts.play('blink',4, true)
+
+    
     }
 
 
