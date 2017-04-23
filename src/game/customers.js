@@ -59,6 +59,8 @@ var Customers = {
     townsperson.thoughts = indicator;
     townsperson.thoughts.animations.add('blink')
     townsperson.thoughts.play('blink',4, true)
+
+    
     }
 
 
