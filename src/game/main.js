@@ -15,13 +15,14 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/button.png')
   },
 
   create: function() {
-    var logo = game.add.image(150,50, 'logo');
+    var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
+    logo.anchor.setTo(0.5, 0.5);
     var start_text = "Click To Begin!"
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, start_text, this.startGame, this, 0, 0, 0 ,0);
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
   },
 
   update: function() {
@@ -131,14 +132,15 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png');
+    game.load.image('standardButton', 'assets/sprites/button.png');
   },
 
   create: function() {
-    game.add.image(150,50, 'logo');
     //resets the world bounds so we can center stuff to the viewport
     game.world.setBounds(0, 0, 800, 600);
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
+    logo.anchor.setTo(0.5, 0.5);
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
   restartGame: function () {
