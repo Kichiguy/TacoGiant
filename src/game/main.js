@@ -48,6 +48,7 @@ var playState = {
     // State preload logic goes here
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.load.image('background', 'assets/Nightscape_BG.png');
+    game.load.image('street', 'assets/road tile.png');
     game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
     game.load.image('groundFloorB', 'assets/buildingTiles/Building_Lower_Tile2.png');
     game.load.image('groundFloorC', 'assets/buildingTiles/Building_Lower_Tile3.png');
