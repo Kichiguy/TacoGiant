@@ -21,7 +21,7 @@ var menuState = {
   create: function() {
     var logo = game.add.image(150,50, 'logo');
     var start_text = "Click To Begin!"
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, start_text, this.startGame, this, 0, 0, 0 ,0);
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
   },
 
   update: function() {
@@ -138,7 +138,7 @@ var gameOver = {
     game.add.image(150,50, 'logo');
     //resets the world bounds so we can center stuff to the viewport
     game.world.setBounds(0, 0, 800, 600);
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
   restartGame: function () {
