@@ -76,7 +76,7 @@ var playState = {
     ledges = game.add.group()
     ledges.enableBody = true;
 
-    this._loadLevel(game.cache.getJSON('level:1'));
+    this._loadLevel();
     score = new Score(0,0);
     timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
