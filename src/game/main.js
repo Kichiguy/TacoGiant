@@ -36,7 +36,7 @@ var menuState = {
 /////// PLAY ///////
 
 var game;
-var player, delivery_points;
+var player, delivery_points, townsfolk;
 var ledges;
 var score;
 var timer;
@@ -82,7 +82,10 @@ var playState = {
     delivery_points = new DeliveryPointGroup
 
     //creates a townsfolk
-    var town = new Townsfolk(100,100)
+    townsfolk = game.add.group();
+    townsfolk.enableBody = true;
+    spawnTownsfolk(ledges.children, 20)
+
   },
   update: function() {
     // State Update Logic goes here.
@@ -94,6 +97,7 @@ var playState = {
                                 delivery_points.shouldDeliver,
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    game.physics.arcade.collide(townsfolk, ledges);
     player.update();
 
     this.checkTimer();
