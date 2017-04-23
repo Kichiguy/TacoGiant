@@ -5,9 +5,10 @@
         {"image": "groundFloorB", "x": 308, "y": 402},
         {"image": "groundFloorC", "x": 554, "y": 402},
         {"image": "upperFloorA", "x": 308, "y": 252},
-        {"image": "upperFloorB", "x": 556, "y": 252},
-        {"image": "upperFloorD", "x": 554, "y": 100},
-        {"image": "street","x": 0, "y": 552}
+        {"image": "upperFloorB", "x": 554, "y": 252},
+        {"image": "upperFloorD", "x": 554, "y": 102},
+        {"image": "upperFloorB", "x": 900, "y": 252},
+        {"image": "upperFloorB", "x": 554, "y": 402}
 
     ]
 
