@@ -4,8 +4,9 @@ function Score(x, y){
   this.scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
 
   this.scoreLabel = game.add.text(x, y, this.scoreLabelText, this.scoreStyle);
-
+  this.scoreLabel.fixedToCamera = true;
   this.score = game.add.text(x, y + 25, this.scoreUpdateText, this.scoreStyle);
+  this.score.fixedToCamera = true;
 }
 
 Score.prototype.deliverTaco = function(points){
@@ -25,7 +26,9 @@ function Timer(x, y, countdown){
   game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
 
   this.timerLabel = game.add.text(x, y, this.timerLabelText, this.timerStyle);
+  this.timerLabel.fixedToCamera = true;
   this.timer = game.add.text(x, y + 25, this.timerCountdown, this.timerStyle);
+  this.timer.fixedToCamera = true;
 
 }
 
