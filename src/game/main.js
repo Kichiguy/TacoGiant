@@ -106,7 +106,7 @@ var playState = {
     this.checkTimer();
   },
   _loadLevel: function(data){
-    data.platforms.forEach(this._spawnPlatform, this);
+    //data.platforms.forEach(this._spawnPlatform, this);
     ground = new PlaceTile(0,552,'street');
     new GenerateGrid;
 
