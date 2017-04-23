@@ -11,7 +11,7 @@ function Player(){
 
 Player.prototype.update = function(){
   var body = this.player.body;
-  
+
   //Controls movement
   body.velocity.x = 0;
   if(this.cursors.right.isDown){

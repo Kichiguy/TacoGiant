@@ -76,7 +76,7 @@ var playState = {
 
     this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
-    timer = new Timer(615,0, 120);
+    timer = new Timer(615,0, 10);
 
     //spawns the player
     player = new Player();
@@ -96,6 +96,7 @@ var playState = {
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
     player.update();
+    game.world.wrap(player.player, 0, true);
     this.checkTimer();
   },
   _loadLevel: function(data){
@@ -124,11 +125,13 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/standardButton.png');
   },
 
   create: function() {
     game.add.image(150,50, 'logo');
+    //resets the world bounds so we can center stuff to the viewport
+    game.world.setBounds(0, 0, 800, 600);
     new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
