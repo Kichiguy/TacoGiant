@@ -55,20 +55,22 @@ var PauseMenu = function(x,y) {
     game.paused = true;
     //render the menu
     context.createResumeButton(context.resumePlay);
-    context.createRestartButton();
+    context.createRestartButton(context.restartPlay);
   });
 };
 PauseMenu.prototype.resumePlay = function(){
-  console.log("RESUME SUCKERS");
+  this.resumeButton.destroy();
+  this.restartButton.destroy();
+
+  game.paused = false;
 }
 PauseMenu.prototype.restartPlay = function(){
-  console.log("RESTART MODERN FAKIRS")
   game.state.restart();
   this.resumePlay();
 }
 PauseMenu.prototype.createResumeButton = function(callback){
   this.resumeButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY - 100, "Resume", callback, this, 0,0,0,0);
 };
-PauseMenu.prototype.createRestartButton = function(){
-  this.restartButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY + 100, "Restart", gameOver.restartGame, this, 0,0,0,0);
+PauseMenu.prototype.createRestartButton = function(callback){
+  this.restartButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY + 100, "Restart", callback, this, 0,0,0,0);
 }
