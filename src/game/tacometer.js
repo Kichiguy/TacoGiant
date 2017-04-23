@@ -1,7 +1,8 @@
 function Tacometer(x,y,spriteTag){
-  this.emitter = game.add.emitter(0, 0, 100);
+  this.emitter = game.add.emitter(0, 0, 1000);
+  this.emitter.fixedToCamera = true;
   this.emitter.makeParticles('tinierTaco');
-  this.emitter.gravity = 200;
+  
   //generates a vertical tacometer along the top edge
   Phaser.Group.call(this, game);
   //start with 10 tacos. 0 THROUGH 9
@@ -19,7 +20,6 @@ Tacometer.prototype.initializeTacometer = function(x,y,spriteTag){
   }
 }
 Tacometer.prototype.loseATaco = function(){
-  console.log(this.tacoCount);
   if(this.tacoCount > 0){
     this.tacoCount -= 1;
     let lostTaco = this.getTop();
