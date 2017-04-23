@@ -36,7 +36,7 @@ var menuState = {
 /////// PLAY ///////
 
 var game;
-var player, delivery_points, townsfolk;
+var player, townsfolk, customers;
 var ledges;
 var score;
 var timer;
@@ -82,26 +82,24 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-    //creates the delivery point group
-    delivery_points = new DeliveryPointGroup
 
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
-    spawnTownsfolk(ledges.children, 20)
+    Townsfolk.spawnTownsfolk(ledges.children, 20)
 
+    //creates the delivery point group
+    customers = game.add.group();
+    customers.enableBody = true;
+    Customers.spawnCustomer(customers, townsfolk);
   },
   update: function() {
     // State Update Logic goes here.
-    //Checks for if the player overlaps a taco delivery point
-    //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
-    game.physics.arcade.overlap(player.player,
-                                delivery_points.customers,
-                                delivery_points.deliver,
-                                delivery_points.shouldDeliver,
-                                delivery_points)
+    
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
-    game.physics.arcade.collide(townsfolk, ledges);
+    game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
+    game.physics.arcade.collide(customers, ledges);
+    game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
     player.update();
     game.world.wrap(player.player, 0, true);
     this.checkTimer();

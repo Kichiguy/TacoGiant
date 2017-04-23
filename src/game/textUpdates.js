@@ -62,8 +62,8 @@ PauseMenu.prototype.resumePlay = function(){
   console.log("RESUME SUCKERS");
 }
 PauseMenu.prototype.createResumeButton = function(callback){
-  new StandardLabelButton(150, 200, "Resume", callback, this, 0,0,0,0);
+  this.resumeButton = new StandardLabelButton(150, 200, "Resume", callback, this, 0,0,0,0);
 };
 PauseMenu.prototype.createRestartButton = function(){
-  new StandardLabelButton(150, 400, "Restart", gameOver.restartGame, gameOver, 0,0,0,0);
+  this.restartButton = new StandardLabelButton(150, 400, "Restart", gameOver.restartGame, gameOver, 0,0,0,0);
 }
