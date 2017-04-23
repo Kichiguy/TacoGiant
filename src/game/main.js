@@ -15,7 +15,7 @@ var menuState = {
   //create is a default phaser state function and is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/button.png')
   },
 
   create: function() {
@@ -131,7 +131,7 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png');
+    game.load.image('standardButton', 'assets/sprites/button.png');
   },
 
   create: function() {
