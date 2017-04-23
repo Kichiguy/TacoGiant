@@ -21,6 +21,6 @@ Player.prototype.update = function(){
     body.velocity.x = -60;
   }
   if(this.cursors.up.isDown && (body.touching.down || body.checkWorldBounds())){
-    body.velocity.y = -1500;
+    body.velocity.y = -150;
   }
 }

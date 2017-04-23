@@ -36,7 +36,7 @@ var menuState = {
 /////// PLAY ///////
 
 var game;
-var player, delivery_points;
+var player, delivery_points, townsfolk;
 var ledges;
 var score;
 var timer;
@@ -60,8 +60,7 @@ var playState = {
     game.load.json('level:1', 'data/level01.json');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
-    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,10,4);
-
+    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
   },
   create: function(){
     // State create logic goes here
@@ -81,6 +80,12 @@ var playState = {
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
+
+    //creates a townsfolk
+    townsfolk = game.add.group();
+    townsfolk.enableBody = true;
+    spawnTownsfolk(ledges.children, 20)
+
   },
   update: function() {
     // State Update Logic goes here.
@@ -92,6 +97,7 @@ var playState = {
                                 delivery_points.shouldDeliver,
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    game.physics.arcade.collide(townsfolk, ledges);
     player.update();
 
     this.checkTimer();
