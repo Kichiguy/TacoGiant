@@ -36,10 +36,11 @@ var menuState = {
 /////// PLAY ///////
 
 var game;
-var player, delivery_points;
+var player, delivery_points, townsfolk;
 var ledges;
 var score;
 var timer;
+var background;
 
 var playState = {
   init: function() {
@@ -60,12 +61,12 @@ var playState = {
     game.load.json('level:1', 'data/level01.json');
     game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
-    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,10,4);
-
+    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
   },
   create: function(){
     // State create logic goes here
-    var s = game.add.image(0, 0, 'background');
+    background = game.add.tileSprite(0, 0, 2400, 600, 'background');
+    game.world.setBounds(0, 0, 2400, 600);
 
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
@@ -78,9 +79,16 @@ var playState = {
 
     //spawns the player
     player = new Player();
+    game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
     //creates the delivery point group
     delivery_points = new DeliveryPointGroup
+
+    //creates a townsfolk
+    townsfolk = game.add.group();
+    townsfolk.enableBody = true;
+    spawnTownsfolk(ledges.children, 20)
+
   },
   update: function() {
     // State Update Logic goes here.
@@ -92,8 +100,9 @@ var playState = {
                                 delivery_points.shouldDeliver,
                                 delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    game.physics.arcade.collide(townsfolk, ledges);
     player.update();
-
+    game.world.wrap(player.player, 0, true);
     this.checkTimer();
   },
   _loadLevel: function(data){
@@ -123,11 +132,13 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/standardButton.png')
+    game.load.image('standardButton', 'assets/sprites/standardButton.png');
   },
 
   create: function() {
     game.add.image(150,50, 'logo');
+    //resets the world bounds so we can center stuff to the viewport
+    game.world.setBounds(0, 0, 800, 600);
     new StandardLabelButton(this.world.centerX, this.world.centerY + 200, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
   },
 
