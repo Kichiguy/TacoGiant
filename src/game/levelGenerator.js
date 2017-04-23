@@ -8,8 +8,6 @@ function PlaceTile(x,y,asset){
 };
 
 function chooseTile(height){
-  var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
-  var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
   var tile;
   if(height > 1){
     let tile = upperFLoorArray[Math.floor(Math.random() * upperFLoorArray.length)];
@@ -26,12 +24,13 @@ function GenerateGrid(){
    while (i < 2400) {
     let xcoordinate =  i + Math.floor(Math.random() * 80);
     height = Math.floor(Math.random()*4);
+    var ycoordinate;
     for(j = 0;j<height;j++){
-    	let ycoordinate  = 550-(height*150);
-    	console.log(xcoordinate,ycoordinate)
-    	PlaceTile(xcoordinate,ycoordinate,'upperFloorB')
+    	let ycoordinate  = 550-((j+1)*150);
+    	console.log(xcoordinate,ycoordinate);
+    	new PlaceTile(xcoordinate,ycoordinate, 'groundFloorB');
     }
-    i = (xcoordinate+ 150);
+    i = (xcoordinate + 150);
 
   }
 

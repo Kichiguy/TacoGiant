@@ -41,6 +41,8 @@ var ledges;
 var score;
 var timer;
 var background;
+var lowerFLoorArray = ['groundFloorA','groundFloorB','groundFloorC'];
+var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
   init: function() {
