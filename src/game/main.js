@@ -73,23 +73,24 @@ var playState = {
 
     ledges = game.add.group()
 
-    //creates the delivery point group
-    delivery_points = new DeliveryPointGroup
+    this._loadLevel(game.cache.getJSON('level:1'));
     score = new Score(0,0);
     timer = new Timer(615,0, 120);
-    this._loadLevel(game.cache.getJSON('level:1'));
+
+    //creates the delivery point group
+    delivery_points = new DeliveryPointGroup
   },
   update: function() {
     // State Update Logic goes here.
-    player.update();
     //Checks for if the player overlaps a taco delivery point
     //Calls DeliveryPointGroup#deliver if DeliveryPointGroup#should_deliver returns true
-    game.physics.arcade.overlap(player.player,
-                                delivery_points.customers,
-                                delivery_points.deliver,
-                                delivery_points.should_deliver,
-                                this)
+    game.physics.arcade.overlap(player.player, 
+                                delivery_points.customers, 
+                                delivery_points.deliver, 
+                                delivery_points.shouldDeliver, 
+                                delivery_points)
     var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    player.update();
 
     this.checkTimer();
   },
