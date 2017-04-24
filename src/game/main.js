@@ -17,20 +17,21 @@ var menuState = {
   preload: function() {
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/button.png');
+    game.load.image('beginGame','assets/UI Buttons/begingame.png');
+    game.load.image('credits','assets/UI Buttons/credits.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
 
   create: function() {
     background = game.add.tileSprite(0, 0, 2400, 600, 'background');
-    var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
+    var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 20, 'logo');
     logo.anchor.setTo(0.5, 0.5);
     crunch = game.add.audio('crunch');
 
     var start_text = "Click To Begin!"
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
+    var startButton = game.add.button(this.world.centerX + 115, this.world.centerY + 90, 'beginGame', this.startGame, this, 0, 0, 0 ,0);
+    var creditsButton = game.add.button(30, 30, "credits", this.credits, this, 0, 0, 0 ,0);
     game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffffff", align: "left"})
     game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffffff", align: "left"})
     game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffffff", align: "left"})
@@ -92,6 +93,8 @@ var playState = {
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
+    game.load.image('resumeButton', 'assets/UI Buttons/resume.png');
+    game.load.image('restartButton', 'assets/UI Buttons/restart.png');
 
     //sounds
     Sound.loadAudio();
@@ -184,7 +187,7 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/button.png');
+    game.load.image('button','assets/UI Buttons/restart.png');
   },
 
   create: function() {
@@ -192,7 +195,7 @@ var gameOver = {
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
-    new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    var restart = game.add.button(this.world.centerX-90, this.world.centerY + 160, 'button', this.restartGame, this, 0, 0, 0 ,0);
     var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
     finalScore = score.tips;
     finalScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+20, "FINAL TIPS: $" + finalScore, finalscorestyle);
@@ -209,13 +212,13 @@ var gameOver = {
 
 var credits = {
   preload: function() {
+    game.load.image('returnButton','assets/UI Buttons/return.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
-    game.load.image('standardButton', 'assets/sprites/button.png');
   },
   create: function() {
     game.world.setBounds(0,0,800,600);
     var style = {font: "21px Arial", fill: "#ffffff", align: "left" };
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Return", this.return, this, 0, 0, 0 ,0);
+    var returnButton = game.add.button(this.world.centerX + 155, this.world.centerY + 155, "returnButton", this.return, this, 0, 0, 0 ,0);
     var Bobby = game.add.sprite(10,10,'townsfolk');
     Bobby.animations.add('hop',[3,4],4,true);
     Bobby.animations.play('hop');
