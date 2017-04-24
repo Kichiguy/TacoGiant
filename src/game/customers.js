@@ -3,8 +3,8 @@ var Customers = {
     for(var i = 0; i < customerGroup.children.length; i++){
       var customer = customerGroup.children[i]
       var customer_thoughts = customer.thoughts.bubble
-      
-      if(customer_thoughts.x + customer_thoughts.width > game.camera.x + game.camera.width || 
+
+      if(customer_thoughts.x + customer_thoughts.width > game.camera.x + game.camera.width ||
          customer_thoughts.x < game.camera.x){
         //if the thought bubble that indicates a customer is hungry is not on screen
         if(customer.offscreenIndicator === undefined){
@@ -14,7 +14,7 @@ var Customers = {
                               (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
           customer.offscreenIndicator = new TacoIndicator(x_coordinate, customer.y - 50)
           customer.offscreenIndicator.indicator.fixedToCamera = true;
-          if(x_coordinate === 0){ 
+          if(x_coordinate === 0){
             customer.stomach <= 5 ? customer.offscreenIndicator.pointLeftUrgent() : customer.offscreenIndicator.pointLeft()
           }else {
             customer.stomach <= 5 ? customer.offscreenIndicator.pointRightUrgent() : customer.offscreenIndicator.pointRight()
@@ -24,11 +24,11 @@ var Customers = {
           var distance = customer.body.x - player.player.body.x
           var x_coordinate = ((Math.abs(distance) < game.world.width / 2 && distance > 0) ||
                               (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
-          if(x_coordinate === 0){ 
+          if(x_coordinate === 0){
             customer.stomach <= 5 ? customer.offscreenIndicator.pointLeftUrgent() : customer.offscreenIndicator.pointLeft()
           }else {
             customer.stomach <= 5 ? customer.offscreenIndicator.pointRightUrgent() : customer.offscreenIndicator.pointRight()
-          }          
+          }
           customer.offscreenIndicator.indicator.cameraOffset.x = x_coordinate
         }
       } else{
@@ -83,7 +83,7 @@ var Customers = {
   },
   spawnCustomer: function(customerGroup, townsfolkGroup, numToSpawn){
     for(var i=0; i< numToSpawn; i++){
-      
+
       var townsperson = townsfolkGroup.getRandom();
       townsfolkGroup.remove(townsperson);
       customerGroup.add(townsperson);
@@ -93,8 +93,8 @@ var Customers = {
       townsperson.tips = 1.00;
       townsperson.body.velocity.x = 0;
 
-      townsperson.thoughts = new TacoBubble(townsperson.body.x + townsperson.body.width,
-                                            townsperson.body.y -94)
+      townsperson.thoughts = new TacoBubble(townsperson.body.x + townsperson.body.width - 25,
+                                            townsperson.body.y -54)
       townsperson.thoughts.normal(),
 
       townsperson.stomach = game.rnd.integerInRange(10, 15);
