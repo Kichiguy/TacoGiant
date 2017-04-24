@@ -100,6 +100,8 @@ var playState = {
     customers.enableBody = true;
     Customers.spawnCustomer(customers, townsfolk);
     tacometer = new Tacometer(130, 25, 'tinyTaco')
+
+    game.time.events.loop(Phaser.Timer.SECOND, Customers.getHungry, null, customers)
   },
   update: function() {
     // State Update Logic goes here.

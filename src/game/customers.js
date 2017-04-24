@@ -39,7 +39,22 @@ var Customers = {
     score.deliverTaco(customer.tips);
     tacometer.loseATaco();
     timer.addTime(5);
-    customer.thoughts.kill();
+    Customers.removeCustomer(customer);
+  },
+  getHungry: function(customers){
+    for(var i =0; i<customers.children.length;i++){
+      customer = customers.children[i]
+      customer.stomach -= 1
+      if(customer.stomach <= 0){
+        Customers.removeCustomer(customer);
+      }
+    }
+
+  },
+  removeCustomer: function(customer){
+    if(customer.thoughts != undefined){
+      customer.thoughts.kill();
+    }
     customer.kill();
     customer.parent.remove(customer);
     Townsfolk.spawnTownsfolk(ledges.children, 1);
@@ -61,10 +76,8 @@ var Customers = {
     townsperson.thoughts.animations.add('blink')
     townsperson.thoughts.play('blink',4, true)
 
-    
-    }
-
-
+    townsperson.stomach = game.rnd.integerInRange(10, 15);
+  }
 }
 
 // function DeliveryPointGroup(){
