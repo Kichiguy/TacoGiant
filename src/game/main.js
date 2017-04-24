@@ -80,6 +80,8 @@ var playState = {
 
     ledges = game.add.group()
     ledges.enableBody = true;
+    ground = game.add.group()
+    ground.enableBody = true;
 
     this._loadLevel();
     score = new Score(0,0);
@@ -106,6 +108,7 @@ var playState = {
     // State Update Logic goes here.
 
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
+    var hitFloor = game.physics.arcade.collide(player.player,ground)
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
@@ -116,7 +119,8 @@ var playState = {
     this.checkTimer();
   },
   _loadLevel: function(data){
-    ground = new PlaceTile(0,552,'street');
+    floor = ground.create(0,552,'street');
+    floor.body.immovable = true;
     new GenerateGrid;
   },
 
