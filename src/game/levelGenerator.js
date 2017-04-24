@@ -20,7 +20,7 @@ function chooseTile(height){
 };
 
 function GenerateGrid(){
-  var ptable = [1,1,1,1,1,1,0,0,2,2,2,2,3,3,3];
+  var ptable = [1,1,1,0,2,2,2,2,3,3,3,3];
   var i = 0;
   while (i < 2350) {
     var xcoordinate =  i + Math.floor(Math.random() * 100)+30;

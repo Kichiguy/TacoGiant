@@ -23,4 +23,17 @@ Player.prototype.update = function(){
   if(this.cursors.up.isDown && (body.touching.down || body.checkWorldBounds())){
     body.velocity.y = -250;
   }
+  //  Allow the player to jump down through platforms
+  if (this.cursors.down.isDown){
+    body.velocity.y = 200;
+  }
+}
+
+function jumpDown(){
+  if (player.cursors.down.isDown){
+    return false;
+  }
+  else{
+    return true;
+  }
 }
