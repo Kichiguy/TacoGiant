@@ -80,7 +80,7 @@ var playState = {
     ledges = game.add.group()
     ledges.enableBody = true;
 
-    this._loadLevel(game.cache.getJSON('level:1'));
+    this._loadLevel();
     score = new Score(0,0);
     timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
@@ -104,7 +104,7 @@ var playState = {
   update: function() {
     // State Update Logic goes here.
 
-    var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
