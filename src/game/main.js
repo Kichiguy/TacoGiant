@@ -9,6 +9,7 @@
 /////// MENU ///////
 
 var button;
+var crunch;
 
 var menuState = {
 
@@ -16,11 +17,15 @@ var menuState = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
+    //sounds
+    game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
 
   create: function() {
     var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
+    crunch = game.add.audio('crunch');
+
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
   },
@@ -30,6 +35,7 @@ var menuState = {
   },
 
   startGame: function() {
+    crunch.play();
     game.state.start('play');
   }
 };
@@ -46,12 +52,17 @@ var background;
 var tacometer, tacoTruck;
 var shakeIt = true; //earthquake on the first landing
 
+//sticking the sound references here
+var yumSound, ouchSound, earthQuakeSound;
+
 var playState = {
   init: function() {
   },
   preload: function() {
     // State preload logic goes here
+
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    //images
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('street', 'assets/road tile.png');
     game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
@@ -70,12 +81,19 @@ var playState = {
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
+
+    //sounds
+    game.load.audio('yay_1', 'assets/SFX/successful_delivery/yay_1.ogg')
   },
   create: function(){
     // State create logic goes here
     background = game.add.tileSprite(0, 0, 2400, 600, 'background');
     game.world.setBounds(0, 0, 2400, 600);
+    //add in the soundzz
+    //this is what plays when you deliver a taco
+    yumSound = game.add.audio('yay_1');
 
+    //set a default style I guess?
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
     ledges = game.add.group()
