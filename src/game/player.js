@@ -16,6 +16,10 @@ Player.prototype.update = function(){
 
   //Controls movement
   body.velocity.x = 0;
+
+  if(body.y >= 410){
+    body.y = 410;
+  }
   if(this.cursors.right.isDown){
     body.velocity.x = 600;
   }
