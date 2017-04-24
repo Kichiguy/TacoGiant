@@ -58,12 +58,14 @@ var reloadTacos = function(truck, player){
   truck.destroy();
   Sound.AddandPlay('taco_pickup');
   //make a new truck on a timer 
-  var seconds = Math.floor(Math.random() * 10);
+  var seconds = Math.floor(Math.random() * 8) + 3;
   seconds = seconds * Phaser.Timer.SECOND;
-  game.time.events.loop(seconds, getANewTruck, this);
+  console.log(seconds)
+  game.time.events.add(seconds, getANewTruck, this);
 }
 
 var getANewTruck = function(){
-  //TODO:Sound
+  console.log("NEW TRUCK")
+  Sound.AddandPlay('car_horn');
   tacoTruck = new TacoTruck;
 }
