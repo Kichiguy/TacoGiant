@@ -167,11 +167,11 @@ var gameOver = {
     new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
     var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
     finalScore = parseInt(score.scoreUpdateText);
-    finalScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+20, "FINAL SCORE: " + finalScore, finalscorestyle);
+    finalScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+20, "FINAL SCORE: " + finalScore, finalscorestyle);
     if(finalScore > highScore){
       highScore = finalScore;
     }
-    highScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+50, "HIGH SCORE: " + highScore, finalscorestyle);
+    highScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+50, "HIGH SCORE:  " + highScore, finalscorestyle);
   },
 
   restartGame: function () {
