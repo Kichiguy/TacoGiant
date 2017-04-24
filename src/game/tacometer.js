@@ -12,14 +12,8 @@ function Tacometer(x,y,spriteTag){
 
 }
 Tacometer.prototype = Object.create(Phaser.Group.prototype);
-Tacometer.prototype.loadTacometer = function(x,y,spriteTag, toAdd = null){
-  if(toAdd){
-    var moreTacos = toAdd;
-  }else{
-    var moreTacos = this.tacoCount;
-  }
-
-  for(var i = moreTacos; i > 0; i -= 1){
+Tacometer.prototype.loadTacometer = function(x,y,spriteTag){
+  for(var i = this.tacoCount; i > 0; i -= 1){
     var a = this.create(x,y,spriteTag);
     a.anchor.setTo(0.5, 0.5);
     a.fixedToCamera = true;
@@ -37,20 +31,11 @@ Tacometer.prototype.loseATaco = function(){
   }
 };
 
-Tacometer.prototype.reloadTacometer = function(moreTacos){
-  var newTacos = this.tacoCount + moreTacos;
-  var oldCount = this.tacoCount;
-  this.tacoCount = Math.min(10, newTacos);
-  var moreTacos = this.tacoCount - oldCount;
-  var lastTaco = this.getTop();
-  if(lastTaco){
-    newTacoX = lastTaco.cameraOffset.x + 30;
-    newTacoY = lastTaco.cameraOffset.y;
-  }else{
-    newTacoX = this.xCood;
-    newTacoY = this.yCood;
-  }
-  this.loadTacometer(newTacoX, newTacoY, 'tinyTaco', moreTacos);
+var reloadTacometer = function(){
+  newTacoX = tacometer.xCood;
+  newTacoY = tacometer.yCood;
+  tacometer.destroy();
+  tacometer = new Tacometer(newTacoX, newTacoY, 'tinyTaco');
 }
 ///// TACO TRUCK //////
 function TacoTruck(){
@@ -64,6 +49,7 @@ function TacoTruck(){
 TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
 
 var reloadTacos = function(truck, player){
-  tacometer.reloadTacometer(10);
-  truck.cameraOffset.x = game.rnd.integerInRange(10, 2390);
+  reloadTacometer();
+  truck.destroy();
+  tacoTruck = new TacoTruck;
 }
