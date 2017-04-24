@@ -10,7 +10,6 @@ function Player(){
     body.velocity.y = -250;    this.player.animations.play('jumping');  }  //  Allow the player to jump down through platforms  if (this.cursors.down.isDown && (body.touching.down)){
     body.velocity.y = 200;  }
 }function jumpDown(){  if (player.cursors.down.isDown){
-    shakeIt = true;
     return false;  }  else{    return true;  }}
 
 function groundShake(player, otherThing){
