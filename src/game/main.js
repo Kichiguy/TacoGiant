@@ -31,11 +31,11 @@ var menuState = {
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
-    game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
-    game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
-    game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
-    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
-    game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffffff", align: "left"})
+    game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffffff", align: "left"})
+    game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffffff", align: "left"})
+    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffffff", align: "left"})
+    game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffffff", align: "left"})
   },
 
   update: function() {
