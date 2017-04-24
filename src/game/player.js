@@ -21,10 +21,10 @@ Player.prototype.update = function(){
     body.y = 410;
   }
   if(this.cursors.right.isDown){
-    body.velocity.x = 600;
+    body.velocity.x = 120;
   }
   if(this.cursors.left.isDown){
-    body.velocity.x = -600;
+    body.velocity.x = -120;
   }
   if(this.cursors.up.isDown && (body.touching.down)){
     body.velocity.y = -250;

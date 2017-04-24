@@ -83,7 +83,7 @@ var playState = {
 
     this._loadLevel();
     score = new Score(0,0);
-    timer = new Timer(615,0,10);
+    timer = new Timer(615,0,1000);
     menu = new PauseMenu(700, 50);
     tacoTruck = new TacoTruck();
 
@@ -91,18 +91,6 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-    var indicator1 = new TacoBubble(10,10);
-    var indicator2 = new TacoBubble(10,100);
-    var indicator3 = new TacoIndicator(100,10);
-    var indicator4 = new TacoIndicator(100,100);
-    var indicator5 = new TacoIndicator(100,200);
-    var indicator6 = new TacoIndicator(200,10);
-    indicator1.normal();
-    indicator2.urgent();
-    indicator3.pointLeft();
-    indicator4.pointLeftUrgent();
-    indicator5.pointRight();
-    indicator6.pointRightUrgent();
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
@@ -122,11 +110,13 @@ var playState = {
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
     var hitFloor = game.physics.arcade.collide(player.player,ground)
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
-    game.physics.arcade.collide(townsfolk,ground)
+    game.physics.arcade.collide(townsfolk, ground, Townsfolk.checkLanding)
     game.physics.arcade.collide(customers, ledges);
-    game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+    game.physics.arcade.overlap(player.player ,customers, Customers.deliverTaco);
     game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
     game.physics.arcade.collide(customers,ground)
+    game.physics.arcade.overlap(player.player, townsfolk, Townsfolk.bumpTownsfolk)
+
 
     Customers.checkOutOfBounds(customers);
     player.update();
