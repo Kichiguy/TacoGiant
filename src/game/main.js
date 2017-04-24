@@ -91,12 +91,6 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-    indicator1.normal();
-    indicator2.urgent();
-    indicator3.pointLeft();
-    indicator4.pointLeftUrgent();
-    indicator5.pointRight();
-    indicator6.pointRightUrgent();
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
