@@ -39,7 +39,7 @@ var menuState = {
 var game;
 var player, townsfolk, customers;
 var ledges;
-var score;
+var score, finalScore, highScore;
 var timer;
 var background;
 var tacometer;
@@ -83,7 +83,7 @@ var playState = {
 
     this._loadLevel();
     score = new Score(0,0);
-    timer = new Timer(615,0,30);
+    timer = new Timer(615,0,10);
     menu = new PauseMenu(700, 50);
 
     //spawns the player
@@ -147,8 +147,10 @@ var gameOver = {
     //resets the world bounds so we can center stuff to the viewport
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
-    logo.anchor.setTo(0.5, 0.5);
+    logo.anchor.setTo(0.4, 0.4);
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    finalScore = new Score(400,400);
+    finalScore.deliverTaco(score.scoreUpdateText);
   },
 
   restartGame: function () {
