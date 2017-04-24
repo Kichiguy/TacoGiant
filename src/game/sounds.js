@@ -85,7 +85,6 @@ var Sound = {
     }
     if(category == 'successful_delivery'){
       var wat =  successful_deliveries[Math.floor(Math.random() * successful_deliveries.length)];
-      console.log(wat);
       return wat
     }
     if(category == 'taco_pickup'){
