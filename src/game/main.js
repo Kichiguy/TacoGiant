@@ -86,7 +86,6 @@ var playState = {
     //add in the soundzz
     //this is what plays when you deliver a taco
     yumSound = game.add.audio('blaster');
-    game.debug.soundInfo(yumSound, 20, 32);
 
     //set a default style I guess?
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
