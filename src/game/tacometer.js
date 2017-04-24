@@ -30,7 +30,7 @@ Tacometer.prototype.loseATaco = function(){
     this.emitter.x = lostTaco.x;
     this.emitter.y = lostTaco.y;
     lostTaco.destroy();
-    this.emitter.start(true, 2000, null, 10);
+    // this.emitter.start(true, 2000, null, 10);
   }
 };
 

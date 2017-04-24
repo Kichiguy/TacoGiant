@@ -87,6 +87,7 @@ var Customers = {
       townsfolkGroup.remove(townsperson);
       customerGroup.add(townsperson);
 
+      townsperson.customer = true;
       townsperson.delivered_to = false;
       townsperson.tips = 100;
       townsperson.body.velocity.x = 0;
