@@ -19,10 +19,14 @@ Player.prototype.update = function(){
   //Controls movement
   body.velocity.x = 0;
   if(this.cursors.right.isDown){
+    this.player.scale.x = 1;
     body.velocity.x = 600;
+    this.player.animations.play('walking');
   }
   if(this.cursors.left.isDown){
+    this.player.scale.x = -1;
     body.velocity.x = -600;
+    this.player.animations.play('walking');
   }
   if(this.cursors.up.isDown && (body.touching.down)){
     body.velocity.y = -250;
