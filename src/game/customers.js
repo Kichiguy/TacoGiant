@@ -47,6 +47,7 @@ var Customers = {
   },
   spawnCustomer: function(customerGroup, townsfolkGroup){
     var townsperson = townsfolkGroup.getRandom();
+    townsfolkGroup.remove(townsperson);
     customerGroup.add(townsperson);
 
     townsperson.delivered_to = false;
