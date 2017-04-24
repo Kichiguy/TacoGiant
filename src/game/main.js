@@ -129,7 +129,7 @@ var playState = {
 
     Customers.checkOutOfBounds(customers);
     player.update();
-    game.world.wrap(player.player, 0, true);
+    game.world.wrap(player.player, 0, true, true, false);
     this.checkTimer();
   },
   _loadLevel: function(data){
