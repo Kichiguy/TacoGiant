@@ -101,10 +101,11 @@ var playState = {
     //creates the delivery point group
     customers = game.add.group();
     customers.enableBody = true;
-    Customers.spawnCustomer(customers, townsfolk);
+    Customers.spawnCustomer(customers, townsfolk, 3);
     tacometer = new Tacometer(130, 25, 'tinyTaco')
 
     game.time.events.loop(Phaser.Timer.SECOND, Customers.getHungry, null, customers)
+    game.time.events.loop(Phaser.Timer.SECOND * 5, Customers.spawnCustomer, null, customers, townsfolk, 3)
   },
   update: function() {
     // State Update Logic goes here.

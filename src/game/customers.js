@@ -38,7 +38,7 @@ var Customers = {
   deliverTaco: function(giant, customer){
     score.deliverTaco(customer.tips);
     tacometer.loseATaco();
-    timer.addTime(5);
+    timer.addTime(2);
     Customers.removeCustomer(customer);
   },
   getHungry: function(customers){
@@ -58,25 +58,27 @@ var Customers = {
     customer.kill();
     customer.parent.remove(customer);
     Townsfolk.spawnTownsfolk(ledges.children, 1);
-    Customers.spawnCustomer(customers,townsfolk);
   },
-  spawnCustomer: function(customerGroup, townsfolkGroup){
-    var townsperson = townsfolkGroup.getRandom();
-    townsfolkGroup.remove(townsperson);
-    customerGroup.add(townsperson);
+  spawnCustomer: function(customerGroup, townsfolkGroup, numToSpawn){
+    for(var i=0; i< numToSpawn; i++){
+      
+      var townsperson = townsfolkGroup.getRandom();
+      townsfolkGroup.remove(townsperson);
+      customerGroup.add(townsperson);
 
-    townsperson.delivered_to = false;
-    townsperson.tips = 100;
-    townsperson.body.velocity.x = 0;
+      townsperson.delivered_to = false;
+      townsperson.tips = 100;
+      townsperson.body.velocity.x = 0;
 
-    var indicator = game.add.sprite(townsperson.body.x + townsperson.body.width,
-                                    townsperson.body.y - 94, 'thoughtBubble')
-    
-    townsperson.thoughts = indicator;
-    townsperson.thoughts.animations.add('blink')
-    townsperson.thoughts.play('blink',4, true)
+      var indicator = game.add.sprite(townsperson.body.x + townsperson.body.width,
+                                      townsperson.body.y - 94, 'thoughtBubble')
+      
+      townsperson.thoughts = indicator;
+      townsperson.thoughts.animations.add('blink')
+      townsperson.thoughts.play('blink',4, true)
 
-    townsperson.stomach = game.rnd.integerInRange(10, 15);
+      townsperson.stomach = game.rnd.integerInRange(10, 15);
+    }
   }
 }
 
