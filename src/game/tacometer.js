@@ -50,11 +50,20 @@ function TacoTruck(){
   game.add.existing(this);
   game.physics.arcade.enable(this);
 }
+
 TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
 
 var reloadTacos = function(truck, player){
   reloadTacometer();
   truck.destroy();
   Sound.AddandPlay('taco_pickup');
+  //make a new truck on a timer 
+  var seconds = Math.floor(Math.random() * 10);
+  seconds = seconds * Phaser.Timer.SECOND;
+  game.time.events.loop(seconds, getANewTruck, this);
+}
+
+var getANewTruck = function(){
+  //TODO:Sound
   tacoTruck = new TacoTruck;
 }
