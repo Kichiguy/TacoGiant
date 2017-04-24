@@ -67,12 +67,10 @@ var reloadTacos = function(truck, player){
   //make a new truck on a timer 
   var seconds = Math.floor(Math.random() * 8) + 3;
   seconds = seconds * Phaser.Timer.SECOND;
-  console.log(seconds)
   game.time.events.add(seconds, getANewTruck, this);
 }
 
 var getANewTruck = function(){
-  console.log("NEW TRUCK")
   Sound.AddandPlay('car_horn');
   tacoTruck = new TacoTruck;
 }
