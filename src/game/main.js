@@ -39,7 +39,8 @@ var menuState = {
 var game;
 var player, townsfolk, customers;
 var ledges;
-var score, finalScore,highScore;
+var score, finalScore;
+var highScore = 0;
 var timer;
 var background;
 var tacometer;
@@ -89,6 +90,18 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
+    var indicator1 = new TacoBubble(10,10);
+    var indicator2 = new TacoBubble(10,100);
+    var indicator3 = new TacoIndicator(100,10);
+    var indicator4 = new TacoIndicator(100,100);
+    var indicator5 = new TacoIndicator(100,200);
+    var indicator6 = new TacoIndicator(200,10);
+    indicator1.normal();
+    indicator2.urgent();
+    indicator3.pointLeft();
+    indicator4.pointLeftUrgent();
+    indicator5.pointRight();
+    indicator6.pointRightUrgent();
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
@@ -97,11 +110,11 @@ var playState = {
     //creates the delivery point group
     customers = game.add.group();
     customers.enableBody = true;
-    Customers.spawnCustomer(customers, townsfolk, 1);
+    Customers.spawnCustomer(customers, townsfolk, 3);
     tacometer = new Tacometer(130, 25, 'tinyTaco')
 
     game.time.events.loop(Phaser.Timer.SECOND, Customers.getHungry, null, customers)
-    // game.time.events.loop(Phaser.Timer.SECOND * 5, Customers.spawnCustomer, null, customers, townsfolk, 3)
+    game.time.events.loop(Phaser.Timer.SECOND * 5, Customers.spawnCustomer, null, customers, townsfolk, 3)
   },
   update: function() {
     // State Update Logic goes here.
@@ -148,14 +161,15 @@ var gameOver = {
     //resets the world bounds so we can center stuff to the viewport
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
-    logo.anchor.setTo(0.4, 0.4);
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
-    finalScore = new Score(400,400);
-    finalScore.deliverTaco(score.scoreUpdateText);
-
-    if(finalScore.scoreUpdateText > highScore){
-      highScore = finalScore.scoreUpdateText;
+    logo.anchor.setTo(0.5, 0.5);
+    new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
+    finalScore = parseInt(score.scoreUpdateText);
+    finalScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+20, "FINAL SCORE: " + finalScore, finalscorestyle);
+    if(finalScore > highScore){
+      highScore = finalScore;
     }
+    highScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+50, "HIGH SCORE: " + highScore, finalscorestyle);
   },
 
   restartGame: function () {
