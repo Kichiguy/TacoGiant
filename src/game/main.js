@@ -115,12 +115,15 @@ var playState = {
 
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
     var hitFloor = game.physics.arcade.collide(player.player,ground);
+
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
-    game.physics.arcade.collide(townsfolk,ground);
+    game.physics.arcade.collide(townsfolk, ground, Townsfolk.checkLanding)
     game.physics.arcade.collide(customers, ledges);
-    game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+    game.physics.arcade.collide(customers, ground)
+
     game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
-    game.physics.arcade.collide(customers,ground);
+    game.physics.arcade.overlap(player.player ,customers, Customers.deliverTaco);
+    game.physics.arcade.overlap(player.player, townsfolk, Townsfolk.bumpTownsfolk)
 
     Customers.checkOutOfBounds(customers);
     player.update();
