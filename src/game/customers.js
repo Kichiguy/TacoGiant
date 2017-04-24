@@ -45,7 +45,7 @@ var Customers = {
     if (tacometer.tacoCount > 0){
     score.deliverTaco(customer.tips);
     tacometer.loseATaco();
-    yumSound.play();
+    Sound.AddandPlay('successful_delivery');
     timer.addTime(2);
     Customers.removeCustomer(customer);
     } else {
