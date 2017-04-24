@@ -1,11 +1,11 @@
 function Player(){
-  this.player = game.add.sprite(200,300, 'giant');
+  this.player = game.add.sprite(200,500, 'giant');
   this.player.anchor.setTo(.5,1);
   game.physics.arcade.enable(this.player);
   this.player.body.bounce.y=.02;
   this.player.body.gravity.y = 200;
   this.player.body.collideWorldBounds = false;
-  this.player.body.setSize(96,142,0,0);
+  this.player.body.setSize(96,142,0,52);
   this.player.animations.add('idle',[8,9,10,11,12,13,14,15],4,true);
   this.player.animations.add('walking',[4,5,6,7],4,true);
   this.player.animations.add('jumping',[0,1,2],4,false);
