@@ -83,9 +83,9 @@ var playState = {
     ground.enableBody = true;
 
     this._loadLevel();
-    score = new Score(0,0);
-    timer = new Timer(615,0,10);
-    menu = new PauseMenu(700, 50);
+    score = new Score(5,560);
+    timer = new Timer(745,555,60);
+    menu = new PauseMenu(400,560);
     tacoTruck = new TacoTruck();
 
     //spawns the player
