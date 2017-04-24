@@ -9,6 +9,7 @@
 /////// MENU ///////
 
 var button;
+var crunch;
 
 var menuState = {
 
@@ -16,11 +17,15 @@ var menuState = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
+    //sounds
+    game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
 
   create: function() {
     var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
+    crunch = game.add.audio('crunch');
+
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
   },
@@ -30,6 +35,7 @@ var menuState = {
   },
 
   startGame: function() {
+    crunch.play();
     game.state.start('play');
   }
 };

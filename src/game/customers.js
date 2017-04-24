@@ -45,10 +45,11 @@ var Customers = {
     if (tacometer.tacoCount > 0){
     score.deliverTaco(customer.tips);
     tacometer.loseATaco();
+    yumSound.play();
     timer.addTime(2);
     Customers.removeCustomer(customer);
     } else {
-      yumSound.play("", 0, 1, true, true);
+      console.log(":(");
     }
   },
   getHungry: function(customers){
