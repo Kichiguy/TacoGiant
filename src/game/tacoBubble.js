@@ -4,6 +4,10 @@ function TacoBubble(x,y) {
   this.bubble.animations.add('thinkUrgent',[4,5,6,7],4,true);
 }
 
+TacoBubble.prototype.kill = function(){
+  this.bubble.kill();
+}
+
 TacoBubble.prototype.normal = function() {
   this.bubble.animations.play('think');
 }
