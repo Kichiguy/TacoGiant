@@ -43,7 +43,7 @@ var score, finalScore;
 var highScore = 0;
 var timer;
 var background;
-var tacometer;
+var tacometer, tacoTruck;
 
 var playState = {
   init: function() {
@@ -85,6 +85,7 @@ var playState = {
     score = new Score(0,0);
     timer = new Timer(615,0,10);
     menu = new PauseMenu(700, 50);
+    tacoTruck = new TacoTruck();
 
     //spawns the player
     player = new Player();
@@ -125,6 +126,7 @@ var playState = {
     game.physics.arcade.collide(townsfolk,ground)
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+    game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
     game.physics.arcade.collide(customers,ground)
 
     Customers.checkOutOfBounds(customers);
