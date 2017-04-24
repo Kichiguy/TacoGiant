@@ -42,10 +42,14 @@ var Customers = {
     }
   },
   deliverTaco: function(giant, customer){
+    if (tacometer.tacoCount > 0){
     score.deliverTaco(customer.tips);
     tacometer.loseATaco();
     timer.addTime(2);
     Customers.removeCustomer(customer);
+    } else {
+      //TODO we should put an error sound here
+    }
   },
   getHungry: function(customers){
     for(var i =0; i<customers.children.length;i++){
