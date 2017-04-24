@@ -7,7 +7,7 @@ var Townsfolk = {
     townsperson.body.velocity.x = -100 * direction
     townsperson.body.velocity.y = -90
     townsperson.bumped = true;
-    score.propertyDamage(20);
+    score.propertyDamage(.25);
   },
   checkLanding: function(townsperson){
     if(!townsperson.bumped){return}
