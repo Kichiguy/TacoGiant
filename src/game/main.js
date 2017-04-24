@@ -15,6 +15,7 @@ var menuState = {
 
   //create is a default phaser state function and is automatically called
   preload: function() {
+    game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
     //sounds
@@ -22,6 +23,7 @@ var menuState = {
   },
 
   create: function() {
+    background = game.add.tileSprite(0, 0, 2400, 600, 'background');
     var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
     crunch = game.add.audio('crunch');
