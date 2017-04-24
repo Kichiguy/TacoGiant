@@ -84,9 +84,7 @@ var Sound = {
       return knock_downs[Math.floor(Math.random() * knock_downs.length)];
     }
     if(category == 'successful_delivery'){
-      var wat =  successful_deliveries[Math.floor(Math.random() * successful_deliveries.length)];
-      console.log(wat);
-      return wat
+      return successful_deliveries[Math.floor(Math.random() * successful_deliveries.length)];
     }
     if(category == 'taco_pickup'){
       return taco_pickups[Math.floor(Math.random() * taco_pickups.length)];
