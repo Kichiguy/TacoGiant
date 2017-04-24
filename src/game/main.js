@@ -39,7 +39,7 @@ var menuState = {
 var game;
 var player, townsfolk, customers;
 var ledges;
-var score, finalScore, highScore;
+var score, finalScore,highScore;
 var timer;
 var background;
 var tacometer;
@@ -164,6 +164,10 @@ var gameOver = {
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
     finalScore = new Score(400,400);
     finalScore.deliverTaco(score.scoreUpdateText);
+
+    if(finalScore.scoreUpdateText > highScore){
+      highScore = finalScore.scoreUpdateText;
+    }
   },
 
   restartGame: function () {
