@@ -58,6 +58,14 @@ var PauseMenu = function(x,y) {
     context.createResumeButton(context.resumePlay);
     context.createRestartButton(context.restartPlay);
   });
+  var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+  space.onDown.add(function() {
+    //pause the game
+    game.paused = true;
+    //render the menu
+    context.createResumeButton(context.resumePlay);
+    context.createRestartButton(context.restartPlay);
+  });
 };
 PauseMenu.prototype.resumePlay = function(){
   this.resumeButton.destroy();
@@ -71,18 +79,9 @@ PauseMenu.prototype.restartPlay = function(){
 }
 PauseMenu.prototype.createResumeButton = function(callback){
   this.resumeButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY - 100, "Resume", callback, this, 0,0,0,0);
-};
+}
 PauseMenu.prototype.createRestartButton = function(callback){
   this.restartButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY + 100, "Restart", callback, this, 0,0,0,0);
 }
 
-function Leaderboard(x, y){
-  this.displayText = "Score: ";
-  this.highscore = highScore;
-  this.scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
 
-  this.scoreLabel = game.add.text(x, y, this.displayText, this.scoreStyle);
-  this.scoreLabel.fixedToCamera = true;
-  this.score = game.add.text(x, y + 25, this.highscore, this.scoreStyle);
-  this.score.fixedToCamera = true;
-};
