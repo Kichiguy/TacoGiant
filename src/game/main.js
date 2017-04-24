@@ -18,8 +18,8 @@ var menuState = {
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
@@ -34,6 +34,7 @@ var menuState = {
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
     Mute();
+    game.sound.mute = false;
     game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
@@ -95,8 +96,8 @@ var playState = {
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
 
     //sounds
     Sound.loadAudio();
@@ -191,8 +192,8 @@ var gameOver = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
   },
 
   create: function() {
