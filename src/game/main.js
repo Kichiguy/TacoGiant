@@ -44,6 +44,7 @@ var highScore = 0;
 var timer;
 var background;
 var tacometer, tacoTruck;
+var shakeIt = true; //earthquake on the first landing
 
 var playState = {
   init: function() {
@@ -83,14 +84,18 @@ var playState = {
     ground.enableBody = true;
 
     this._loadLevel();
-    score = new Score(0,0);
-    timer = new Timer(615,0,10);
-    menu = new PauseMenu(700, 50);
+    score = new Score(5,560);
+    timer = new Timer(745,555,60);
+    menu = new PauseMenu(400,560);
     tacoTruck = new TacoTruck();
 
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
+    //creates a collison event signal for the player
+    player.player.body.onCollide = new Phaser.Signal();
+    //sets a callback for the player's collision event signal
+    player.player.body.onCollide.add(groundShake, this);
 
     //creates a townsfolk
     townsfolk = game.add.group();
@@ -109,13 +114,16 @@ var playState = {
     // State Update Logic goes here.
 
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
-    var hitFloor = game.physics.arcade.collide(player.player,ground)
+    var hitFloor = game.physics.arcade.collide(player.player,ground);
+
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
-    game.physics.arcade.collide(townsfolk,ground)
+    game.physics.arcade.collide(townsfolk, ground, Townsfolk.checkLanding)
     game.physics.arcade.collide(customers, ledges);
-    game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+    game.physics.arcade.collide(customers, ground)
+
     game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
-    game.physics.arcade.collide(customers,ground)
+    game.physics.arcade.overlap(player.player ,customers, Customers.deliverTaco);
+    game.physics.arcade.overlap(player.player, townsfolk, Townsfolk.bumpTownsfolk)
 
     Customers.checkOutOfBounds(customers);
     player.update();
