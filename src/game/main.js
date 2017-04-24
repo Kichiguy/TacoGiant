@@ -62,9 +62,8 @@ var playState = {
     game.load.image('upperFloorC', 'assets/buildingTiles/Building_Upper_Tile3.png');
     game.load.image('upperFloorD', 'assets/buildingTiles/Building_Upper_Tile4.png');
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
-    game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,4);
-    game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86);
-    //game.load.image('giant', 'assets/sprites/PlaceholderGiant.png');
+    game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,8);
+    game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86,16);
     game.load.spritesheet('giant', 'assets/sprites/Giant-idle.png', 96, 150, 8);
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
@@ -92,7 +91,18 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-
+    var indicator1 = new TacoBubble(10,10);
+    var indicator2 = new TacoBubble(10,100);
+    var indicator3 = new TacoIndicator(100,10);
+    var indicator4 = new TacoIndicator(100,100);
+    var indicator5 = new TacoIndicator(100,200);
+    var indicator6 = new TacoIndicator(200,10);
+    indicator1.normal();
+    indicator2.urgent();
+    indicator3.pointLeft();
+    indicator4.pointLeftUrgent();
+    indicator5.pointRight();
+    indicator6.pointRightUrgent();
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
