@@ -48,7 +48,7 @@ var Customers = {
     timer.addTime(2);
     Customers.removeCustomer(customer);
     } else {
-      //TODO we should put an error sound here
+      yumSound.play();
     }
   },
   getHungry: function(customers){
