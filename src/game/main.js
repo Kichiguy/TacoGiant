@@ -64,7 +64,7 @@ var playState = {
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,8);
     game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86,16);
-    game.load.spritesheet('giant', 'assets/sprites/Giant-idle.png', 96, 150, 8);
+    game.load.spritesheet('giant', 'assets/sprites/Giant-Final.png',96,250,16);
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
