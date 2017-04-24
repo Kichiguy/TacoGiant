@@ -104,7 +104,7 @@ var playState = {
   update: function() {
     // State Update Logic goes here.
 
-    var hitPlatform = game.physics.arcade.collide(player.player, ledges);
+    var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
