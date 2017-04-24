@@ -89,7 +89,7 @@ var Customers = {
 
       townsperson.customer = true;
       townsperson.delivered_to = false;
-      townsperson.tips = 100;
+      townsperson.tips = 1.00;
       townsperson.body.velocity.x = 0;
 
       townsperson.thoughts = new TacoBubble(townsperson.body.x + townsperson.body.width,

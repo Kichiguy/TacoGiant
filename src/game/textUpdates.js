@@ -1,19 +1,19 @@
 function Score(x, y){
-  this.scoreLabelText = "Score: ";
-  this.scoreUpdateText = 0;
+  this.scoreLabelText = "Tips $";
+  this.tips = 0.0;
   this.scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
-  this.score = game.add.text(x, y, this.scoreLabelText + this.scoreUpdateText, this.scoreStyle);
+  this.score = game.add.text(x, y, this.scoreLabelText + this.tips, this.scoreStyle);
   this.score.fixedToCamera = true;
 }
 
 Score.prototype.deliverTaco = function(points){
-  this.scoreUpdateText = parseInt(this.scoreUpdateText) + parseInt(points);
-  this.score.setText(this.scoreUpdateText);
+  this.tips += points;
+  this.score.setText(this.scoreLabelText + this.tips);
 }
 
 Score.prototype.propertyDamage = function(points) {
-  this.scoreUpdateText = parseInt(this.scoreUpdateText) - parseInt(points);
-  this.score.setText(this.scoreUpdateText);
+  this.tips -= points;
+  this.score.setText(this.scoreLabelText + this.tips);
 }
 
 function Timer(x, y, countdown){
