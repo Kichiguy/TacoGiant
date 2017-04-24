@@ -49,11 +49,24 @@ function TacoTruck(){
   this.animations.play('dance',4,true);
   game.add.existing(this);
   game.physics.arcade.enable(this);
+  Sound.AddandPlay('car_horn');
 }
+
 TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
 
 var reloadTacos = function(truck, player){
   reloadTacometer();
   truck.destroy();
+  Sound.AddandPlay('taco_pickup');
+  //make a new truck on a timer 
+  var seconds = Math.floor(Math.random() * 8) + 3;
+  seconds = seconds * Phaser.Timer.SECOND;
+  console.log(seconds)
+  game.time.events.add(seconds, getANewTruck, this);
+}
+
+var getANewTruck = function(){
+  console.log("NEW TRUCK")
+  Sound.AddandPlay('car_horn');
   tacoTruck = new TacoTruck;
 }
