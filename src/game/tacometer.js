@@ -49,6 +49,7 @@ function TacoTruck(){
   this.animations.play('dance',4,true);
   game.add.existing(this);
   game.physics.arcade.enable(this);
+  Sound.AddandPlay('car_horn');
 }
 
 TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
