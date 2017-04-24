@@ -44,6 +44,7 @@ var highScore = 0;
 var timer;
 var background;
 var tacometer, tacoTruck;
+var shakeIt = true; //earthquake on the first landing
 
 var playState = {
   init: function() {
@@ -63,7 +64,8 @@ var playState = {
     game.load.image('upperFloorE', 'assets/buildingTiles/Building_Upper_Tile5.png');
     game.load.spritesheet('thoughtBubble', 'assets/sprites/thoughtBubble.png',59,94,8);
     game.load.spritesheet('tacoIndicator', 'assets/sprites/tacoIndicator.png',70,86,16);
-    game.load.spritesheet('giant', 'assets/sprites/Giant-idle.png', 96, 150, 8);
+    game.load.spritesheet('tacoTruck', 'assets/sprites/tacotruck.png',50,80,2);
+    game.load.spritesheet('giant', 'assets/sprites/Giant-Final.png',96,250,16);
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
@@ -82,14 +84,18 @@ var playState = {
     ground.enableBody = true;
 
     this._loadLevel();
-    score = new Score(0,0);
-    timer = new Timer(615,0,1000);
-    menu = new PauseMenu(700, 50);
+    score = new Score(5,560);
+    timer = new Timer(745,555,60);
+    menu = new PauseMenu(400,560);
     tacoTruck = new TacoTruck();
 
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
+    //creates a collison event signal for the player
+    player.player.body.onCollide = new Phaser.Signal();
+    //sets a callback for the player's collision event signal
+    player.player.body.onCollide.add(groundShake, this);
 
     //creates a townsfolk
     townsfolk = game.add.group();
@@ -108,15 +114,16 @@ var playState = {
     // State Update Logic goes here.
 
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
-    var hitFloor = game.physics.arcade.collide(player.player,ground)
+    var hitFloor = game.physics.arcade.collide(player.player,ground);
+
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
     game.physics.arcade.collide(townsfolk, ground, Townsfolk.checkLanding)
     game.physics.arcade.collide(customers, ledges);
-    game.physics.arcade.overlap(player.player ,customers, Customers.deliverTaco);
-    game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
-    game.physics.arcade.collide(customers,ground)
-    game.physics.arcade.overlap(player.player, townsfolk, Townsfolk.bumpTownsfolk)
+    game.physics.arcade.collide(customers, ground)
 
+    game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
+    game.physics.arcade.overlap(player.player ,customers, Customers.deliverTaco);
+    game.physics.arcade.overlap(player.player, townsfolk, Townsfolk.bumpTownsfolk)
 
     Customers.checkOutOfBounds(customers);
     player.update();
@@ -156,11 +163,11 @@ var gameOver = {
     new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
     var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
     finalScore = parseInt(score.scoreUpdateText);
-    finalScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+20, "FINAL SCORE: " + finalScore, finalscorestyle);
+    finalScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+20, "FINAL SCORE: " + finalScore, finalscorestyle);
     if(finalScore > highScore){
       highScore = finalScore;
     }
-    highScoreDisplay = game.add.text(4*(game.world.centerX/5), game.world.centerY+50, "HIGH SCORE: " + highScore, finalscorestyle);
+    highScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+50, "HIGH SCORE:  " + highScore, finalscorestyle);
   },
 
   restartGame: function () {
