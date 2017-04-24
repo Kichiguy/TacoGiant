@@ -5,7 +5,9 @@ function Player(){
   this.player.body.bounce.y=.02;
   this.player.body.gravity.y = 200;
   this.player.body.collideWorldBounds = false;
-
+  this.player.body.setSize(96,142,0,0);
+  this.player.animations.add('idle');
+  this.player.play('idle',4,true);
   this.cursors = game.input.keyboard.createCursorKeys();
 }
 

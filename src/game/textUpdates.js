@@ -34,6 +34,7 @@ function Timer(x, y, countdown){
 
 Timer.prototype.addTime = function(addedAmount) {
   this.timerCountdown = parseInt(this.timerCountdown) + parseInt(addedAmount);
+  this.timer.setText(this.timerCountdown);
 }
 
 Timer.prototype.updateTimer = function() {
