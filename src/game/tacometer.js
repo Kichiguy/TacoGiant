@@ -18,7 +18,7 @@ Tacometer.prototype.loadTacometer = function(x,y,spriteTag, toAdd = null){
   }else{
     var moreTacos = this.tacoCount;
   }
-  console.log("Loading Tacometer...." + moreTacos.toString() + " more tacos!")
+
   for(var i = moreTacos; i > 0; i -= 1){
     var a = this.create(x,y,spriteTag);
     a.anchor.setTo(0.5, 0.5);
