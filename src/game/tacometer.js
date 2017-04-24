@@ -40,9 +40,10 @@ var reloadTacometer = function(){
 ///// TACO TRUCK //////
 function TacoTruck(){
   var randomX = game.rnd.integerInRange(10, 2390);
-  Phaser.Sprite.call(this, game, randomX, 560, 'arrow');
+  Phaser.Sprite.call(this, game, randomX, 570, 'tacoTruck');
   this.anchor.setTo(0.5, 1); // anchor on the bottom
-
+  this.animations.add('dance');
+  this.animations.play('dance',4,true);
   game.add.existing(this);
   game.physics.arcade.enable(this);
 }
