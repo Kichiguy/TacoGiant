@@ -51,7 +51,6 @@ var playState = {
   preload: function() {
     // State preload logic goes here
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.physics.startSystem(Phaser.Physics.P2JS);
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('street', 'assets/road tile.png');
     game.load.image('groundFloorA', 'assets/buildingTiles/Building_Lower_Tile1.png');
@@ -92,6 +91,8 @@ var playState = {
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
+    //sets the collison camera shake for the player
+    // player.player.body.onCollide.add(hitSprite, this);
 
     //creates a townsfolk
     townsfolk = game.add.group();
@@ -110,13 +111,13 @@ var playState = {
     // State Update Logic goes here.
 
     var hitPlatform = game.physics.arcade.collide(player.player, ledges,null,jumpDown);
-    var hitFloor = game.physics.arcade.collide(player.player,ground)
+    var hitFloor = game.physics.arcade.collide(player.player,ground);
     game.physics.arcade.collide(townsfolk, ledges, Townsfolk.ledgeCollision);
-    game.physics.arcade.collide(townsfolk,ground)
+    game.physics.arcade.collide(townsfolk,ground);
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
     game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
-    game.physics.arcade.collide(customers,ground)
+    game.physics.arcade.collide(customers,ground);
 
     Customers.checkOutOfBounds(customers);
     player.update();
