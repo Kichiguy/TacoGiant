@@ -5,9 +5,8 @@ function Player(){
     shakeIt = true;
     body.velocity.y = -250;    this.player.animations.play('jumping');  }  //  Allow the player to jump down through platforms  if (this.cursors.down.isDown && (body.touching.down)){
     shakeIt = true;
-    body.velocity.y = 200;  }  if(body.touching.down && (this.state == 'midAir')) {    this.player.animations.play('impact');    /*setTimeout(function(){
-      if(body.velocity.x > 0) {        this.player.animations.play('walking');        this.state = 'walking';      }      else {        this.player.animations.play('idle');        this.state = 'idle';      }    },1000);*/
-  }}function jumpDown(){  if (player.cursors.down.isDown){
+    body.velocity.y = 200;  }
+}function jumpDown(){  if (player.cursors.down.isDown){
     shakeIt = true;
     return false;  }  else{    return true;  }}
 
@@ -16,7 +15,7 @@ function groundShake(player, otherThing){
   if(player.body.touching.down && shakeIt == true){
       //a gentle shake
       game.camera.shake(0.005, 300);
-
+      player.animations.play('impact');
     //only shake once until the next jump event
     shakeIt = false;
   }
