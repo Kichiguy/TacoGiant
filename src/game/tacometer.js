@@ -7,6 +7,8 @@ function Tacometer(x,y,spriteTag){
   this.emitter.makeParticles('tinierTaco');
   this.xCood = x;
   this.yCood = y;
+  this.outOfTacosText = game.add.text(130,10,"You are out of tacos. Find a taco truck!", this.tacoStyle)
+  this.outOfTacosText.visible = false;
   //generates a vertical tacometer along the top edge
   Phaser.Group.call(this, game);
   //start with 10 tacos. 0 THROUGH 9
@@ -22,6 +24,7 @@ Tacometer.prototype.loadTacometer = function(x,y,spriteTag){
     a.fixedToCamera = true;
     x+=30;
   }
+  this.outOfTacosText.visible = false
 }
 Tacometer.prototype.loseATaco = function(){
   if(this.tacoCount > 0){
@@ -31,6 +34,9 @@ Tacometer.prototype.loseATaco = function(){
     this.emitter.y = lostTaco.y;
     lostTaco.destroy();
     // this.emitter.start(true, 2000, null, 10);
+    if(this.tacoCount <= 0){
+      this.outOfTacosText.visible = true;
+    }
   }
 };
 
