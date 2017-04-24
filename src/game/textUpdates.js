@@ -52,19 +52,24 @@ var PauseMenu = function(x,y) {
 
   var context = this;
   this.pauseLabel.events.onInputUp.add(function() {
-    //pause the game
-    game.paused = true;
-    //render the menu
-    context.createResumeButton(context.resumePlay);
-    context.createRestartButton(context.restartPlay);
+    if (game.paused != true){
+      //pause the game
+      game.paused = true
+      //render the menu
+      context.createResumeButton(context.resumePlay);
+      context.createRestartButton(context.restartPlay);
+    }
   });
   var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   space.onDown.add(function() {
-    //pause the game
-    game.paused = true;
+    if (game.paused != true){
+      //pause the game
+      game.paused = true
+      //render the menu
+      context.createResumeButton(context.resumePlay);
+      context.createRestartButton(context.restartPlay);
+    }
     //render the menu
-    context.createResumeButton(context.resumePlay);
-    context.createRestartButton(context.restartPlay);
   });
 };
 PauseMenu.prototype.resumePlay = function(){
