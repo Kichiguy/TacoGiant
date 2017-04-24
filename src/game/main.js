@@ -23,6 +23,12 @@ var menuState = {
     logo.anchor.setTo(0.5, 0.5);
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
+
+    game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
   },
 
   update: function() {
@@ -128,6 +134,8 @@ var playState = {
     Customers.checkOutOfBounds(customers);
     player.update();
     game.world.wrap(player.player, 0, true, true, false);
+    townsfolk.forEach(Townsfolk.removeOutOfBounds, this)
+
     this.checkTimer();
   },
   _loadLevel: function(data){
