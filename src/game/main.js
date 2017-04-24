@@ -83,15 +83,16 @@ var playState = {
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
 
     //sounds
-    game.load.audio('yay_1', 'assets/SFX/successful_delivery/yay_1.ogg')
+    Sound.loadAudio();
+
   },
   create: function(){
     // State create logic goes here
     background = game.add.tileSprite(0, 0, 2400, 600, 'background');
     game.world.setBounds(0, 0, 2400, 600);
     //add in the soundzz
-    //this is what plays when you deliver a taco
-    yumSound = game.add.audio('yay_1');
+    //this add all the sounds to the game yay
+    Sound.addAudioToPlay();
 
     //set a default style I guess?
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
