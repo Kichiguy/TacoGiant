@@ -55,5 +55,6 @@ TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
 var reloadTacos = function(truck, player){
   reloadTacometer();
   truck.destroy();
+  chooseAudio('taco_pickup').play();
   tacoTruck = new TacoTruck;
 }
