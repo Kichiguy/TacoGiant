@@ -27,8 +27,8 @@ var menuState = {
     crunch = game.add.audio('crunch');
 
     var start_text = "Click To Begin!"
-    new StandardLabelButton(this.world.centerX, this.world.centerY + 100, start_text, this.startGame, this, 0, 0, 0 ,0);
-
+    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
+    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
     game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
@@ -43,6 +43,9 @@ var menuState = {
   startGame: function() {
     crunch.play();
     game.state.start('play');
+  },
+  credits: function() {
+    game.state.start('credits');
   }
 };
 
@@ -201,6 +204,47 @@ var gameOver = {
   }
 };
 
+var credits = {
+  preload: function() {
+    game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
+    game.load.image('standardButton', 'assets/sprites/button.png');
+  },
+  create: function() {
+    game.world.setBounds(0,0,800,600);
+    var style = {font: "21px Arial", fill: "#ffffff", align: "left" };
+    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Return", this.return, this, 0, 0, 0 ,0);
+    var Bobby = game.add.sprite(10,10,'townsfolk');
+    Bobby.animations.add('hop',[3,4],4,true);
+    Bobby.animations.play('hop');
+    var bobbyText = game.add.text(60,55,"Bobby - Craft Services    @onlywinningmove",style);
+    var Sarah = game.add.sprite(10,60,'townsfolk');
+    Sarah.animations.add('hop',[6,7],4,true);
+    Sarah.animations.play('hop');
+    var sarahText = game.add.text(60,105,"Sarah - Chief Seismologist",style);
+    var Ben = game.add.sprite(10,110,'townsfolk');
+    Ben.animations.add('hop',[9,10],4,true);
+    Ben.animations.play('hop');
+    var BenText = game.add.text(60,155,"Ben - Taco Enthusiast",style);
+    var Naomi = game.add.sprite(10,160,'townsfolk');
+    Naomi.animations.add('hop',[12,13],4,true);
+    Naomi.animations.play('hop');
+    var NaomiText = game.add.text(60,205,"Naomi - Head Landscaper",style);
+    var Ant = game.add.sprite(10,210,'townsfolk');
+    Ant.animations.add('hop',[15,16],4,true);
+    Ant.animations.play('hop');
+    var AntText = game.add.text(60,255,"Ant - Pixel Pusher            antsama.tumblr.com",style);
+    var soundCredits = game.add.text(10,520,"SFX - freesound.org",style);
+    var musicCredits = game.add.text(10,550,"BGM - freemusicarchive.org",style);
+  },
+  update: function() {
+
+  },
+  return: function() {
+    game.state.start('menuState')
+  }
+}
+
+
 window.onload = function () {
   game = new Phaser.Game(
   800,
@@ -209,6 +253,8 @@ window.onload = function () {
   'game',
   menuState
   );
+  game.state.add('menuState',menuState)
+  game.state.add('credits',credits);
   game.state.add('play', playState);
-  game.state.add('gameOver', gameOver)
+  game.state.add('gameOver', gameOver);
 };
