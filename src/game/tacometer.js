@@ -52,3 +52,12 @@ Tacometer.prototype.reloadTacometer = function(moreTacos){
   }
   this.loadTacometer(newTacoX, newTacoY, 'tinyTaco', moreTacos);
 }
+///// TACO TRUCK //////
+function TacoTruck(){
+  var randomX = game.rnd.integerInRange(10, 2390);
+  Phaser.Sprite.call(this, game, randomX, 560, 'arrow');
+  this.anchor.setTo(0.5, 1); // anchor on the bottom
+
+  game.add.existing(this);
+}
+TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);

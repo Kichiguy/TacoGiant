@@ -87,6 +87,7 @@ var playState = {
     score = new Score(0,0);
     timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
+    new TacoTruck();
 
     //spawns the player
     player = new Player();
