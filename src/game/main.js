@@ -44,6 +44,7 @@ var highScore = 0;
 var timer;
 var background;
 var tacometer, tacoTruck;
+var shakeIt = true; //earthquake on the first landing
 
 var playState = {
   init: function() {
@@ -91,8 +92,10 @@ var playState = {
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
-    //sets the collison camera shake for the player
-    // player.player.body.onCollide.add(hitSprite, this);
+    //creates a collison event signal for the player
+    player.player.body.onCollide = new Phaser.Signal();
+    //sets a callback for the player's collision event signal
+    player.player.body.onCollide.add(groundShake, this);
 
     //creates a townsfolk
     townsfolk = game.add.group();

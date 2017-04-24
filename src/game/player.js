@@ -32,6 +32,7 @@ Player.prototype.update = function(){
     this.player.animations.play('walking');
   }
   if(this.cursors.up.isDown && (body.touching.down)){
+    shakeIt = true;
     body.velocity.y = -250;
   }
   //  Allow the player to jump down through platforms
@@ -41,9 +42,20 @@ Player.prototype.update = function(){
 }
 function jumpDown(){
   if (player.cursors.down.isDown){
+    shakeIt = true;
     return false;
   }
   else{
     return true;
+  }
+}
+
+function groundShake(player, otherThing){
+  if( shakeIt == true){
+    //shake( intensity , duration )
+    game.camera.shake(0.01, 500);
+
+    //only shake once until the next jump event
+    shakeIt = false;
   }
 }
