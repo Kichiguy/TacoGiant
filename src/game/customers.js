@@ -74,9 +74,11 @@ var Customers = {
       customer.offscreenIndicator.indicator.kill()
       customer.offscreenIndicator = undefined
     }
-    customer.kill();
-    customer.parent.remove(customer);
-    Townsfolk.spawnTownsfolk(ledges.children, 1);
+    customer.destroy();
+    Townsfolk.spawnTownsfolk(ledges.children, 30 - townsfolk.length);
+    if(customers.children.length <= 1){
+      Customers.spawnCustomer(customers, townsfolk, 3 - customers.children.length)
+    }
   },
   spawnCustomer: function(customerGroup, townsfolkGroup, numToSpawn){
     for(var i=0; i< numToSpawn; i++){
