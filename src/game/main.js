@@ -43,8 +43,6 @@ var score;
 var timer;
 var background;
 var tacometer;
-var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
-var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
 var playState = {
   init: function() {
