@@ -2,7 +2,7 @@ var Customers = {
   checkOutOfBounds: function(customerGroup){
     for(var i = 0; i < customerGroup.children.length; i++){
       var customer = customerGroup.children[i]
-      var customer_thoughts = customer.thoughts
+      var customer_thoughts = customer.thoughts.bubble
       
       if(customer_thoughts.x + customer_thoughts.width > game.camera.x + game.camera.width || 
          customer_thoughts.x < game.camera.x){
@@ -14,15 +14,21 @@ var Customers = {
                               (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
           customer.offscreenIndicator = new TacoIndicator(x_coordinate, customer.y - 50)
           customer.offscreenIndicator.indicator.fixedToCamera = true;
-          x_coordinate === 0 ? customer.offscreenIndicator.pointLeft() : customer.offscreenIndicator.pointRight();
+          if(x_coordinate === 0){ 
+            customer.stomach <= 5 ? customer.offscreenIndicator.pointLeftUrgent() : customer.offscreenIndicator.pointLeft()
+          }else {
+            customer.stomach <= 5 ? customer.offscreenIndicator.pointRightUrgent() : customer.offscreenIndicator.pointRight()
+          }
         } else {
           //otherwise, make sure the indicator is on the correct side of the screen
           var distance = customer.body.x - player.player.body.x
           var x_coordinate = ((Math.abs(distance) < game.world.width / 2 && distance > 0) ||
                               (Math.abs(distance) > game.world.width / 2 && distance < 0)) ? game.camera.width - 80 : 0
-          if(customer.offscreenIndicator.indicator.cameraOffset.x != x_coordinate){
-            x_coordinate === 0 ? customer.offscreenIndicator.pointLeft() : customer.offscreenIndicator.pointRight();
-          }
+          if(x_coordinate === 0){ 
+            customer.stomach <= 5 ? customer.offscreenIndicator.pointLeftUrgent() : customer.offscreenIndicator.pointLeft()
+          }else {
+            customer.stomach <= 5 ? customer.offscreenIndicator.pointRightUrgent() : customer.offscreenIndicator.pointRight()
+          }          
           customer.offscreenIndicator.indicator.cameraOffset.x = x_coordinate
         }
       } else{
@@ -45,6 +51,10 @@ var Customers = {
     for(var i =0; i<customers.children.length;i++){
       customer = customers.children[i]
       customer.stomach -= 1
+      if(customer.stomach === 5){
+        customer.thoughts.urgent();
+      }
+
       if(customer.stomach <= 0){
         Customers.removeCustomer(customer);
       }
@@ -54,6 +64,11 @@ var Customers = {
   removeCustomer: function(customer){
     if(customer.thoughts != undefined){
       customer.thoughts.kill();
+      customer.thoughts = undefined;
+    }
+    if(customer.offscreenIndicator != undefined){
+      customer.offscreenIndicator.indicator.kill()
+      customer.offscreenIndicator = undefined
     }
     customer.kill();
     customer.parent.remove(customer);
@@ -70,12 +85,9 @@ var Customers = {
       townsperson.tips = 100;
       townsperson.body.velocity.x = 0;
 
-      var indicator = game.add.sprite(townsperson.body.x + townsperson.body.width,
-                                      townsperson.body.y - 94, 'thoughtBubble')
-      
-      townsperson.thoughts = indicator;
-      townsperson.thoughts.animations.add('blink')
-      townsperson.thoughts.play('blink',4, true)
+      townsperson.thoughts = new TacoBubble(townsperson.body.x + townsperson.body.width,
+                                            townsperson.body.y -94)
+      townsperson.thoughts.normal(),
 
       townsperson.stomach = game.rnd.integerInRange(10, 15);
     }

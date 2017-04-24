@@ -89,18 +89,6 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-    var indicator1 = new TacoBubble(10,10);
-    var indicator2 = new TacoBubble(10,100);
-    var indicator3 = new TacoIndicator(100,10);
-    var indicator4 = new TacoIndicator(100,100);
-    var indicator5 = new TacoIndicator(100,200);
-    var indicator6 = new TacoIndicator(200,10);
-    indicator1.normal();
-    indicator2.urgent();
-    indicator3.pointLeft();
-    indicator4.pointLeftUrgent();
-    indicator5.pointRight();
-    indicator6.pointRightUrgent();
     //creates a townsfolk
     townsfolk = game.add.group();
     townsfolk.enableBody = true;
@@ -109,11 +97,11 @@ var playState = {
     //creates the delivery point group
     customers = game.add.group();
     customers.enableBody = true;
-    Customers.spawnCustomer(customers, townsfolk, 3);
+    Customers.spawnCustomer(customers, townsfolk, 1);
     tacometer = new Tacometer(130, 25, 'tinyTaco')
 
     game.time.events.loop(Phaser.Timer.SECOND, Customers.getHungry, null, customers)
-    game.time.events.loop(Phaser.Timer.SECOND * 5, Customers.spawnCustomer, null, customers, townsfolk, 3)
+    // game.time.events.loop(Phaser.Timer.SECOND * 5, Customers.spawnCustomer, null, customers, townsfolk, 3)
   },
   update: function() {
     // State Update Logic goes here.
