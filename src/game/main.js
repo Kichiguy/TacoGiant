@@ -91,12 +91,6 @@ var playState = {
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
 
-    var indicator1 = new TacoBubble(10,10);
-    var indicator2 = new TacoBubble(10,100);
-    var indicator3 = new TacoIndicator(100,10);
-    var indicator4 = new TacoIndicator(100,100);
-    var indicator5 = new TacoIndicator(100,200);
-    var indicator6 = new TacoIndicator(200,10);
     indicator1.normal();
     indicator2.urgent();
     indicator3.pointLeft();
