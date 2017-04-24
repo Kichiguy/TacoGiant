@@ -9,15 +9,17 @@ function Player(){
   this.player.animations.add('idle',[8,9,10,11,12,13,14,15],4,true);
   this.player.animations.add('walking',[4,5,6,7],4,true);
   this.player.animations.add('jumping',[0,1,2],4,false);
-  this.player.animations.add('mid-air',[2],1,false);
   this.cursors = game.input.keyboard.createCursorKeys();
 }
 
 Player.prototype.update = function(){
   var body = this.player.body;
-
+  //this.player.animations.play('idle');
   //Controls movement
   body.velocity.x = 0;
+  if(this.cursors.up.isDown && (body.touching.down)){
+    body.velocity.y = -250;
+  }
   if(this.cursors.right.isDown){
     this.player.scale.x = 1;
     body.velocity.x = 600;
@@ -27,9 +29,6 @@ Player.prototype.update = function(){
     this.player.scale.x = -1;
     body.velocity.x = -600;
     this.player.animations.play('walking');
-  }
-  if(this.cursors.up.isDown && (body.touching.down)){
-    body.velocity.y = -250;
   }
   //  Allow the player to jump down through platforms
   if (this.cursors.down.isDown){
