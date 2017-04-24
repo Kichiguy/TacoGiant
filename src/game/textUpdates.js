@@ -2,10 +2,7 @@ function Score(x, y){
   this.scoreLabelText = "Score: ";
   this.scoreUpdateText = 0;
   this.scoreStyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
-
-  this.scoreLabel = game.add.text(x, y, this.scoreLabelText, this.scoreStyle);
-  this.scoreLabel.fixedToCamera = true;
-  this.score = game.add.text(x, y + 25, this.scoreUpdateText, this.scoreStyle);
+  this.score = game.add.text(x, y, this.scoreLabelText + this.scoreUpdateText, this.scoreStyle);
   this.score.fixedToCamera = true;
 }
 
@@ -20,7 +17,7 @@ Score.prototype.propertyDamage = function(points) {
 }
 
 function Timer(x, y, countdown){
-  this.timerStyle = {font: "40px Arial", fill: "#ffffff", align: "right"};
+  this.timerStyle = {font: "35px Arial", fill: "#ffffff", align: "right"};
   this.timerCountdown = countdown;
   game.time.events.loop(Phaser.Timer.SECOND, this.updateTimer, this);
 
