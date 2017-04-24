@@ -67,7 +67,8 @@ var playState = {
     game.load.spritesheet('tacoTruck', 'assets/sprites/tacotruck.png',50,80,2);
     game.load.spritesheet('giant', 'assets/sprites/Giant-Final.png',96,250,16);
     game.load.image('arrow', 'assets/sprites/PlaceholderArrow.png');
-    game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
+    //game.load.spritesheet('townsfolk', 'assets/sprites/PlaceholderTownsfolkSheet.png', 10,40,4);
+    game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
   },
