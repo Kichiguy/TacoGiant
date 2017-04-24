@@ -59,5 +59,11 @@ function TacoTruck(){
   this.anchor.setTo(0.5, 1); // anchor on the bottom
 
   game.add.existing(this);
+  game.physics.arcade.enable(this);
 }
 TacoTruck.prototype = Object.create(Phaser.Sprite.prototype);
+
+var reloadTacos = function(truck, player){
+  tacometer.reloadTacometer(10);
+  truck.cameraOffset.x = game.rnd.integerInRange(10, 2390);
+}

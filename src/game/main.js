@@ -42,7 +42,7 @@ var ledges;
 var score;
 var timer;
 var background;
-var tacometer;
+var tacometer, tacoTruck;
 var lowerFloorArray = ['groundFloorA','groundFloorB','groundFloorC'];
 var upperFloorArray = ['upperFloorA','upperFloorB','upperFloorC','upperFloorD','upperFloorE'];
 
@@ -87,7 +87,7 @@ var playState = {
     score = new Score(0,0);
     timer = new Timer(615,0,30);
     menu = new PauseMenu(700, 50);
-    new TacoTruck();
+    tacoTruck = new TacoTruck();
 
     //spawns the player
     player = new Player();
@@ -117,6 +117,7 @@ var playState = {
     game.physics.arcade.collide(townsfolk,ground)
     game.physics.arcade.collide(customers, ledges);
     game.physics.arcade.overlap(customers, player.player, Customers.deliverTaco);
+    game.physics.arcade.overlap(tacoTruck, player.player, reloadTacos);
     game.physics.arcade.collide(customers,ground)
 
     Customers.checkOutOfBounds(customers);
