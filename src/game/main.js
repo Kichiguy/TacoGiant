@@ -23,6 +23,7 @@ var menuState = {
     game.load.image('beginGame','assets/UI Buttons/begingame.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
+    game.load.audio('title', 'assets/BGM/Intro_Loop_-_Diogo_Cadaval_-_S_Pra_Ver.ogg')
   },
 
   create: function() {
@@ -30,7 +31,8 @@ var menuState = {
     var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
     crunch = game.add.audio('crunch');
-
+    var music = game.add.audio('title');
+    music.play();
     var start_text = "Click To Begin!"
     Mute();
     game.sound.mute = false;
@@ -104,6 +106,7 @@ var playState = {
 
     //sounds
     Sound.loadAudio();
+    game.load.audio('main_theme', 'assets/BGM/Level_Diogo_Cadaval_-_S_Pra_Ver.ogg')
 
   },
   create: function(){
@@ -114,7 +117,8 @@ var playState = {
     //add in the soundzz
     //this add all the sounds to the game yay
     Sound.addAudioToPlay();
-
+    var music = game.sound.add('main_theme');
+    music.play();
     //set a default style I guess?
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
