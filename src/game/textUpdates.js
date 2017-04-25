@@ -76,10 +76,8 @@ PauseMenu.prototype.restartPlay = function(){
   this.resumePlay();
 }
 PauseMenu.prototype.createResumeButton = function(callback){
-  this.resumeButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY - 100, "Resume", callback, this, 0,0,0,0);
+  this.resumeButton = game.add.button(game.camera.view.centerX - 220, game.camera.view.centerY - 100, "resumeButton", callback, this, 0,0,0,0);
 }
 PauseMenu.prototype.createRestartButton = function(callback){
-  this.restartButton = new StandardLabelButton(game.camera.view.centerX, game.camera.view.centerY + 100, "Restart", callback, this, 0,0,0,0);
+  this.restartButton = game.add.button(game.camera.view.centerX + 100, game.camera.view.centerY - 100, "restartButton", callback, this, 0,0,0,0);
 }
-
-

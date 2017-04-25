@@ -17,9 +17,10 @@ var menuState = {
   preload: function() {
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/button.png');
     game.load.image('noSlashSpeaker','assets/volumeOn.png');
     game.load.image('slashSpeaker','assets/volumeOff.png');
+    game.load.image('credits','assets/UI Buttons/credits.png');
+    game.load.image('beginGame','assets/UI Buttons/begingame.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
@@ -31,8 +32,6 @@ var menuState = {
     crunch = game.add.audio('crunch');
 
     var start_text = "Click To Begin!"
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
     Mute();
     game.sound.mute = false;
     game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
@@ -40,6 +39,8 @@ var menuState = {
     game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    var startButton = game.add.button(this.world.centerX + 115, this.world.centerY + 90, 'beginGame', this.startGame, this, 0, 0, 0 ,0);
+    var creditsButton = game.add.button(30, 30, "credits", this.credits, this, 0, 0, 0 ,0);
   },
 
   update: function() {
@@ -98,6 +99,8 @@ var playState = {
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
     game.load.image('noSlashSpeaker','assets/volumeOn.png');
     game.load.image('slashSpeaker','assets/volumeOff.png');
+    game.load.image('resumeButton', 'assets/UI Buttons/resume.png');
+    game.load.image('restartButton', 'assets/UI Buttons/restart.png');
 
     //sounds
     Sound.loadAudio();
@@ -191,9 +194,9 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('standardButton', 'assets/sprites/button.png');
     game.load.image('noSlashSpeaker','assets/volumeOn.png');
     game.load.image('slashSpeaker','assets/volumeOff.png');
+    game.load.image('button','assets/UI Buttons/restart.png');
   },
 
   create: function() {
@@ -219,13 +222,13 @@ var gameOver = {
 
 var credits = {
   preload: function() {
+    game.load.image('returnButton','assets/UI Buttons/return.png');
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
-    game.load.image('standardButton', 'assets/sprites/button.png');
   },
   create: function() {
     game.world.setBounds(0,0,800,600);
     var style = {font: "21px Arial", fill: "#ffffff", align: "left" };
-    new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Return", this.return, this, 0, 0, 0 ,0);
+    var returnButton = game.add.button(this.world.centerX + 155, this.world.centerY + 155, "returnButton", this.return, this, 0, 0, 0 ,0);
     var Bobby = game.add.sprite(10,10,'townsfolk');
     Bobby.animations.add('hop',[3,4],4,true);
     Bobby.animations.play('hop');
