@@ -16,3 +16,36 @@ StandardLabelButton.prototype.constructor = StandardLabelButton;
 StandardLabelButton.prototype.setLabel = function(label) {
   this.label.setText(label);
 };
+
+
+
+var mutebutton;
+var unMute;
+
+var Mute = function() {
+  mutebutton = game.add.button(740,10,'noSlashSpeaker',toggleSound,this);
+  mutebutton.fixedToCamera = true;
+
+  unMute = game.add.button(740,10,'slashSpeaker',toggleSound,this);
+  unMute.fixedToCamera = true;
+  if (game.sound.mute){
+    mutebutton.visible = false;
+    }
+  else{
+    unMute.visible = false;
+  }
+};
+
+
+var toggleSound = function(){
+  if(game.sound.mute){
+    game.sound.mute = false;
+    unMute.visible = false;
+    mutebutton.visible = true;
+  }
+  else {
+    game.sound.mute = true;
+    unMute.visible = true;
+    mutebutton.visible = false;
+  };
+};

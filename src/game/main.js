@@ -10,7 +10,7 @@
 
 var button;
 var crunch;
-
+var volume = true;
 var menuState = {
 
   //create is a default phaser state function and is automatically called
@@ -18,6 +18,8 @@ var menuState = {
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
   },
@@ -31,11 +33,13 @@ var menuState = {
     var start_text = "Click To Begin!"
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 80, start_text, this.startGame, this, 0, 0, 0 ,0);
     new StandardLabelButton(this.world.centerX + 250, this.world.centerY + 225, "Credits", this.credits, this, 0, 0, 0 ,0);
-    game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffffff", align: "left"})
-    game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffffff", align: "left"})
-    game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffffff", align: "left"})
-    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffffff", align: "left"})
-    game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffffff", align: "left"})
+    Mute();
+    game.sound.mute = false;
+    game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
   },
 
   update: function() {
@@ -92,6 +96,8 @@ var playState = {
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
 
     //sounds
     Sound.loadAudio();
@@ -101,6 +107,7 @@ var playState = {
     // State create logic goes here
     background = game.add.tileSprite(0, 0, 2400, 600, 'background');
     game.world.setBounds(0, 0, 2400, 600);
+    Mute();
     //add in the soundzz
     //this add all the sounds to the game yay
     Sound.addAudioToPlay();
@@ -118,7 +125,7 @@ var playState = {
     timer = new Timer(745,555,60);
     menu = new PauseMenu(400,560);
     tacoTruck = new TacoTruck();
-
+    
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -185,10 +192,13 @@ var gameOver = {
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
     game.load.image('standardButton', 'assets/sprites/button.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
   },
 
   create: function() {
     //resets the world bounds so we can center stuff to the viewport
+    Mute();
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
