@@ -132,7 +132,7 @@ var playState = {
     timer = new Timer(745,555,60);
     menu = new PauseMenu(400,560);
     tacoTruck = new TacoTruck();
-    
+
     //spawns the player
     player = new Player();
     game.camera.follow(player.player, Phaser.Camera.FOLLOW_PLATFORMER);
@@ -209,7 +209,7 @@ var gameOver = {
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
-    new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
+    var restart = game.add.button(this.world.centerX - 90, this.world.centerY + 160, "button", this.restartGame, this, 0, 0, 0 ,0);
     var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
     finalScore = score.tips;
     finalScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+20, "FINAL TIPS: $" + finalScore, finalscorestyle);
