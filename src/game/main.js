@@ -253,7 +253,7 @@ var credits = {
     Ant.animations.add('hop',[15,16],4,true);
     Ant.animations.play('hop');
     var AntText = game.add.text(60,255,"Ant - Pixel Pusher            antsama.tumblr.com",style);
-    var soundCredits = game.add.text(10,520,"SFX - freesound.org",style);
+    var soundCredits = game.add.text(10,490,"SFX - freesound.org \nDiogo Cadaval - Sa Pra Ver Sambar",style);
     var musicCredits = game.add.text(10,550,"BGM - freemusicarchive.org",style);
   },
   update: function() {
