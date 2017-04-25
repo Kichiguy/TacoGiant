@@ -17,26 +17,29 @@ var menuState = {
   preload: function() {
     game.load.image('background', 'assets/Nightscape_BG.png');
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
     game.load.image('credits','assets/UI Buttons/credits.png');
     game.load.image('beginGame','assets/UI Buttons/begingame.png');
     //sounds
     game.load.audio('crunch', 'assets/SFX/crunch.ogg')
+    game.load.audio('title', 'assets/BGM/Intro_Loop_-_Diogo_Cadaval_-_S_Pra_Ver.ogg')
   },
 
   create: function() {
     background = game.add.tileSprite(0, 0, 2400, 600, 'background');
-    var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 20, 'logo');
+    var logo = game.add.image(this.world.centerX - 30 , this.world.centerY - 25, 'logo');
     logo.anchor.setTo(0.5, 0.5);
     crunch = game.add.audio('crunch');
-
+    var music = game.add.audio('title');
+    music.play();
     var start_text = "Click To Begin!"
     Mute();
+    game.sound.mute = false;
     game.add.text(40, 400, 'Arrow keys to move!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 430, 'Up to jump!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
-    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 460, 'Down to fall through floors!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
+    game.add.text(40, 510, 'Deliver tacos to the hungry gnomes to earn tips,', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     game.add.text(40, 540, 'but don\'t bump into the ones who aren\'t hungry!', {font: "20px Arial", fill: "#ffbb33", align: "left"})
     var startButton = game.add.button(this.world.centerX + 115, this.world.centerY + 90, 'beginGame', this.startGame, this, 0, 0, 0 ,0);
     var creditsButton = game.add.button(30, 30, "credits", this.credits, this, 0, 0, 0 ,0);
@@ -96,13 +99,14 @@ var playState = {
     game.load.spritesheet('townsfolk', 'assets/sprites/peoples-final.png',50,80,21);
     game.load.image('tinyTaco', 'assets/sprites/tinyTaco.png');
     game.load.image('tinierTaco', 'assets/sprites/tinierTaco.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
     game.load.image('resumeButton', 'assets/UI Buttons/resume.png');
     game.load.image('restartButton', 'assets/UI Buttons/restart.png');
 
     //sounds
     Sound.loadAudio();
+    game.load.audio('main_theme', 'assets/BGM/Level_Diogo_Cadaval_-_S_Pra_Ver.ogg')
 
   },
   create: function(){
@@ -113,7 +117,8 @@ var playState = {
     //add in the soundzz
     //this add all the sounds to the game yay
     Sound.addAudioToPlay();
-
+    var music = game.sound.add('main_theme');
+    music.play();
     //set a default style I guess?
     var style = { font: "72px Arial", fill: "#00F", align: "center" };
 
@@ -193,8 +198,8 @@ var gameOver = {
   //create is a default phaser state function as is automatically called
   preload: function() {
     game.load.image('logo', 'assets/Tacologo.png');
-    game.load.image('volumeOn','assets/volumeOn.png');
-    game.load.image('volumeOff','assets/volumeOff.png');
+    game.load.image('noSlashSpeaker','assets/volumeOn.png');
+    game.load.image('slashSpeaker','assets/volumeOff.png');
     game.load.image('button','assets/UI Buttons/restart.png');
   },
 
@@ -204,7 +209,7 @@ var gameOver = {
     game.world.setBounds(0, 0, 800, 600);
     var logo = game.add.image(this.world.centerX - 30, this.world.centerY - 100, 'logo');
     logo.anchor.setTo(0.5, 0.5);
-    var restart = game.add.button(this.world.centerX-90, this.world.centerY + 160, 'button', this.restartGame, this, 0, 0, 0 ,0);
+    new StandardLabelButton(this.world.centerX+10, this.world.centerY + 160, "Restart Game", this.restartGame, this, 0, 0, 0 ,0);
     var finalscorestyle = {font: "24px Arial", fill: "#ffffff", align: "left"};
     finalScore = score.tips;
     finalScoreDisplay = game.add.text(4*(game.world.centerX/5)-5, game.world.centerY+20, "FINAL TIPS: $" + finalScore, finalscorestyle);

@@ -23,11 +23,11 @@ var mutebutton;
 var unMute;
 
 var Mute = function() {
-  mutebutton = game.add.button(740,10,'volumeOn',toggleSound,this);
+  mutebutton = game.add.button(740,10,'noSlashSpeaker',toggleSound,this);
   mutebutton.fixedToCamera = true;
 
-  unMute = game.add.button(740,10,'volumeOff',toggleSound,this);
-  unMute.fixedToCamera =true;
+  unMute = game.add.button(740,10,'slashSpeaker',toggleSound,this);
+  unMute.fixedToCamera = true;
   if (game.sound.mute){
     mutebutton.visible = false;
     }
@@ -38,17 +38,14 @@ var Mute = function() {
 
 
 var toggleSound = function(){
-
   if(game.sound.mute){
-    console.log("SOUND ON");
     game.sound.mute = false;
-    unMute.visible =true;
-    mutebutton.visible = false;
-  }
-  else {
-    console.log('MUTE')
-    game.sound.mute = true;
     unMute.visible = false;
     mutebutton.visible = true;
+  }
+  else {
+    game.sound.mute = true;
+    unMute.visible = true;
+    mutebutton.visible = false;
   };
 };
